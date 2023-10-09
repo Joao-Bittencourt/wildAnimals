@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('players_animals', function (Blueprint $table) {
+        Schema::create('player_animals', function (Blueprint $table) {
             $table->id();
             $table->integer('animal_id')->references('id')->on('animals');
             $table->integer('player_id')->references('id')->on('players');

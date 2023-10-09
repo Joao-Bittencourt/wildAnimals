@@ -16,3 +16,28 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/animals', [\App\Http\Controllers\AnimalsController::class, 'list'])
+        ->name('animals.list');
+Route::get('/animals/create', [\App\Http\Controllers\AnimalsController::class, 'create'])
+        ->name('animals.create');
+Route::post('/animals/store', [\App\Http\Controllers\AnimalsController::class, 'store'])
+        ->name('animals.store');
+
+Route::get('/animal-families', [\App\Http\Controllers\AnimalFamiliesController::class, 'list'])
+        ->name('animalFamilies.list');
+Route::get('/animal-families/create', [\App\Http\Controllers\AnimalFamiliesController::class, 'create'])
+        ->name('animalFamilies.create');
+Route::post('/animal-families/store', [\App\Http\Controllers\AnimalFamiliesController::class, 'store'])
+        ->name('animalFamilies.store');
+
+Route::get('/animal-especies', [\App\Http\Controllers\AnimalEspeciesController::class, 'list'])
+        ->name('animalEspecies.list');
+Route::get('/animal-especies/create', [\App\Http\Controllers\AnimalEspeciesController::class, 'create'])
+        ->name('animalEspecies.create');
+Route::post('/animal-especies/store', [\App\Http\Controllers\AnimalEspeciesController::class, 'store'])
+        ->name('animalEspecies.store');
+
+Route::get('/player-animals', [\App\Http\Controllers\PlayerAnimalsController::class, 'list'])
+        ->name('playerAnimals.list');
