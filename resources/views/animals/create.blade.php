@@ -19,11 +19,19 @@
                     <form class="form-horizontal" method="post" action="{{ url('animals/store') }}">
                         @csrf
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <label for="name">Nome</label>
                                 <input class="form-control" type="text" name="name">
                             </div>    
-                            <div class="col md-4">
+                            <div class="col-md-2">
+                                <label for="min_power">Força min</label>
+                                <input class="form-control" type="number" min="0"  name="min_power">
+                            </div>    
+                            <div class="col-md-2">
+                                <label for="max_power">Força max</label>
+                                <input class="form-control" type="number" max="4096" name="max_power">
+                            </div>    
+                            <div class="col-md-2">
                                 <label for="animal_especie_id">Especie</label>
                                 <select name="animal_especie_id" class="form-control">
                                     @foreach($animalEspecies as $animalEspecie)
@@ -31,7 +39,7 @@
                                     @endforeach
                                 </select>
                             </div>    
-                            <div class="col md-4">
+                            <div class="col-md-2">
                                 <label for="animal_family_id">Familia</label>
                                 <select name="animal_family_id" class="form-control">
                                     @foreach($animalFamilies as $animalFamily)
@@ -39,7 +47,7 @@
                                     @endforeach
                                 </select>
                             </div>    
-                            <div class="col md-4">
+                            <div class="col-md-2">
                                 <label for="status">status</label>
                                 <select name="status" class="form-control">
                                     @foreach($arStatus as $status)

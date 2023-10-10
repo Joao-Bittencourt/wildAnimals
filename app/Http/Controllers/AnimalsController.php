@@ -35,6 +35,8 @@ class AnimalsController extends Controller {
         $requestValidated = $request->validate([
             'name' => 'required|unique:animals|max:255',
             'description' => 'required',
+            'min_power' => 'required|integer',
+            'max_power' => 'required|integer',
             'animal_especie_id' => 'required|integer',
             'animal_family_id' => 'required|integer',
             'status' => 'required|integer|between:0,1',

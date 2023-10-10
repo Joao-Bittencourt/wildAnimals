@@ -16,7 +16,6 @@ return new class extends Migration
             $table->integer('user_id')->references('id')->on('users');
             $table->string('name');
             $table->string('nick_name');
-            $table->text('description')->nullable();
             $table->integer('status')->default('1');
             $table->timestamps();
         });

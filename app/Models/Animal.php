@@ -14,6 +14,8 @@ class Animal extends Model {
     public $fillable = [
         'name',
         'description',
+        'min_power',
+        'max_power',
         'animal_family_id',
         'animal_especie_id',
         'status',

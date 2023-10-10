@@ -37,6 +37,7 @@ return [
     'especie' => 'Espécie',
     'family' => 'Família',
     'families' => 'Famílias',
+    'min_max_power' => 'Força Min / Max',
     
     // Animal familias
     'animal_families' => 'Animal Família',

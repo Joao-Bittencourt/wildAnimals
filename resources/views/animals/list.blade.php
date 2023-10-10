@@ -28,6 +28,7 @@
                         <th class="text-center">#</th>
                         <th class="text-center">{{ __('messages.name') }}</th>
                         <th class="text-center">{{ __('messages.description') }}</th>
+                        <th class="text-center">{{ __('messages.min_max_power') }}</th>
                         <th class="text-center">{{ __('messages.especie') }}</th>
                         <th class="text-center">{{ __('messages.family') }}</th>
                         <th class="text-center">{{ __('messages.status') }}</th>
@@ -40,6 +41,7 @@
                         <td>{{ $animal->id }}</td>
                         <td>{{ $animal->name }}</td>
                         <td>{{ $animal->description }}</td>
+                        <td>{{ $animal->min_power . ' / ' . $animal->max_power }}</td>
                         <td>{{ $animal->animalFamily->name }}</td>
                         <td>{{ $animal->animalEspecie->name }}</td>
                         <td>{{ $animal->status == 1 ? __('messages.active') : __('messages.inactive') }}</td>
