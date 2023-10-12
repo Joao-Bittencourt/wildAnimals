@@ -12,11 +12,11 @@ class DatabaseSeeder extends Seeder {
                 \App\Models\Player::factory()->count(1)
                 )->create();
         
-        \App\Models\AnimalEspecie::factory(100)->create();
-        \App\Models\AnimalFamily::factory(100)->create();
-        \App\Models\Animal::factory(200)->create();
+        \App\Models\AnimalEspecie::factory(10)->create();
+        \App\Models\AnimalFamily::factory(10)->create();
+        \App\Models\Animal::factory(20)->create();
         
-        \App\Models\PlayerAnimal::factory(200)->create();
+        \App\Models\PlayerAnimal::factory(20)->create();
  
     }
 
