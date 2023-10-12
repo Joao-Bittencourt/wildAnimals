@@ -8,9 +8,14 @@ class PlayerAnimalsController extends Controller {
 
     public function list() {
         $playerAnimals = \App\Models\PlayerAnimal::all();
-        return view('playerAnimals.list', ['animals' => $playerAnimals]);
+        return view('playerAnimals.list', ['playerAnimals' => $playerAnimals]);
     }
 
+    public function explorer() {
+        
+        $animalFamilies = \App\Models\AnimalFamily::all();
+        return view('playerAnimals.explorar', ['animalFamilies' => $animalFamilies]);
+    }
 //    public function store(Request $request) {
 //        //
 //    }

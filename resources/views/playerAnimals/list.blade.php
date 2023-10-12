@@ -11,8 +11,8 @@
     <div class="row align-items-center justify-content-between mb-2">
 
         <div class="col col-sm-6 text-left">
-            <a class="btn btn-success" href="{{ route('animals.create') }}">
-                <i class="fa fa-plus"></i> Criar
+            <a class="btn btn-success" href="{{ route('playerAnimals.explorer') }}">
+                <i class="fa fa-plus"></i> Explorar
             </a>
         </div>
 
@@ -25,24 +25,20 @@
                     <tr>
                         <th class="text-center">#</th>
                         <th class="text-center">{{ __('messages.name') }}</th>
-                        <th class="text-center">{{ __('messages.description') }}</th>
-                        <th class="text-center">{{ __('messages.min_max_power') }}</th>
-                        <th class="text-center">{{ __('messages.especie') }}</th>
-                        <th class="text-center">{{ __('messages.family') }}</th>
+                        <th class="text-center">{{ __('messages.power') }}</th>
+                        <th class="text-center">{{ __('messages.animal') }}</th>
                         <th class="text-center">{{ __('messages.status') }}</th>
 
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($animals as $animal)
+                    @forelse ($playerAnimals as $playeranimal)
                     <tr class="text-center">
-                        <td>{{ $animal->id }}</td>
-                        <td>{{ $animal->name }}</td>
-                        <td>{{ $animal->description }}</td>
-                        <td>{{ $animal->min_power . ' / ' . $animal->max_power }}</td>
-                        <td>{{ $animal->animalFamily->name }}</td>
-                        <td>{{ $animal->animalEspecie->name }}</td>
-                        <td>{{ $animal->status == 1 ? __('messages.active') : __('messages.inactive') }}</td>
+                        <td>{{ $playeranimal->id }}</td>
+                        <td>{{ $playeranimal->name }}</td>
+                        <td>{{ $playeranimal->power }}</td>
+                        <td>{{ $playeranimal->animal->name }}</td>
+                        <td>{{ $playeranimal->status == 1 ? __('messages.active') : __('messages.inactive') }}</td>
                     </tr>
                     @empty
                     <tr class="text-center">

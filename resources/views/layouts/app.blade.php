@@ -48,6 +48,7 @@
     <body class="container">
 
         <div class="text-center"> 
+            
             <nav class="navbar navbar-expand-lg navbar-light custom-navbar nav-bar-green-color"> 
                 <image class="imagem mr-3" src="{{ asset('img/wolf-icon.jpg') }}" width="5%"/>
                 
@@ -60,7 +61,7 @@
                             <a class="nav-link btn btn-success ml-1" href="{{ route('playerAnimals.list') }}">Animais</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn btn-success ml-1" href="#">Explorar</a>
+                            <a class="nav-link btn btn-success ml-1" href="{{ route('playerAnimals.explorer') }}">Explorar</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link btn btn-success ml-1" href="#">Arena</a>
