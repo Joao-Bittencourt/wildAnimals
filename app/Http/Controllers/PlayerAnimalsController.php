@@ -16,6 +16,10 @@ class PlayerAnimalsController extends Controller {
         $animalFamilies = \App\Models\AnimalFamily::all();
         return view('playerAnimals.explorar', ['animalFamilies' => $animalFamilies]);
     }
+    
+    public function explor(Request $request) {
+        
+    }
 //    public function store(Request $request) {
 //        //
 //    }

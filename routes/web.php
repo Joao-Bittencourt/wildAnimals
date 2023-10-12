@@ -43,3 +43,5 @@ Route::get('/player-animals', [\App\Http\Controllers\PlayerAnimalsController::cl
         ->name('playerAnimals.list');
 Route::get('/player-animals/explorer', [\App\Http\Controllers\PlayerAnimalsController::class, 'explorer'])
         ->name('playerAnimals.explorer');
+Route::post('/player-animals/explor', [\App\Http\Controllers\PlayerAnimalsController::class, 'explor'])
+        ->name('playerAnimals.explor');
