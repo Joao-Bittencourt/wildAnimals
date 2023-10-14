@@ -26,7 +26,7 @@
                         <td> 
                             <form method="POST" action="{{ route('playerAnimals.explor') }}">
                             @csrf
-                            <input type="hidden" name="name">
+                            <input type="hidden" name="animal_family_id" value="{{ $animalFamily->id }}" >
                             <button type="submit">Submit</button>
                             </form>
                     </tr>

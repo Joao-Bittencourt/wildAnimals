@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Faker;
 
 class PlayerAnimalsController extends Controller {
 
@@ -19,6 +20,22 @@ class PlayerAnimalsController extends Controller {
     
     public function explor(Request $request) {
         
+        
+        $animalFamilyId = $request->animal_family_id ?? 0;
+        
+        $animal = \App\Models\Animal::inRandomOrder()->where('animal_family_id', $animalFamilyId)->get()->first();
+    
+        $faker = Faker\Factory::create();
+        $animalPlayer = [
+            'animal_id' => $animal->id,
+            'player_id' => 1,
+            'name' => $faker->name(),
+            'power' => $faker->numberBetween($animal->min_power, $animal->max_power),
+            'status' => 1
+        ];
+        
+        
+        \App\Models\PlayerAnimal::create($animalPlayer);
     }
 //    public function store(Request $request) {
 //        //
