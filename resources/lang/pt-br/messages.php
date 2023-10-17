@@ -32,12 +32,14 @@ return [
     'no_records' => 'Nenhum registro encontrado',
     
     // Animais
+    'animal' => 'Animal',
     'animals' => 'Animais',
     'especies' => 'Espécies',
     'especie' => 'Espécie',
     'family' => 'Família',
     'families' => 'Famílias',
     'min_max_power' => 'Força Min / Max',
+    'power' => 'Força',
     
     // Animal familias
     'animal_families' => 'Animal Família',

@@ -36,6 +36,8 @@ class PlayerAnimalsController extends Controller {
         
         
         \App\Models\PlayerAnimal::create($animalPlayer);
+        
+        return redirect(route('playerAnimals.list'));
     }
 //    public function store(Request $request) {
 //        //

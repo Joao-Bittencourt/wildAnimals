@@ -45,3 +45,11 @@ Route::get('/player-animals/explorer', [\App\Http\Controllers\PlayerAnimalsContr
         ->name('playerAnimals.explorer');
 Route::post('/player-animals/explor', [\App\Http\Controllers\PlayerAnimalsController::class, 'explor'])
         ->name('playerAnimals.explor');
+
+Route::get('/login', [\App\Http\Controllers\UsersController::class, 'login'])
+        ->name('users.login');
+Route::post('/do-login', [\App\Http\Controllers\UsersController::class, 'doLogin'])
+        ->name('users.doLogin');
+
+
+
