@@ -23,7 +23,7 @@
             }
 
             .special-card {
-                 composes: card-body;
+                composes: card-body;
                 /*opacity: .9;*/
                 background-color: #5DC166;
             }
@@ -39,7 +39,7 @@
             }
             .dropdown-menu > li:hover{ background-color: #f1f1f1 }
             .dropdown-menu > li:hover > .submenu{ display: block; }
-            
+
             .nav-bar-green-color {
                 background-color: #228B22;
             }
@@ -48,10 +48,10 @@
     <body class="container">
 
         <div class="text-center"> 
-            
+
             <nav class="navbar navbar-expand-lg navbar-light custom-navbar nav-bar-green-color"> 
                 <image class="imagem mr-3" src="{{ asset('img/wolf-icon.jpg') }}" width="5%"/>
-                
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -95,7 +95,15 @@
                             </ul>
                         </li>
                     </ul>
+                    <ul class='navbar-nav ml-auto'>
+                        <li class='nav-item'>
+                            <a href="{{route('users.logout')}}" class='btn btn-sm btn-danger' title='sair'>
+                                <i class='bi bi-box-arrow-left'></i>
+                            </a>
+                        </li>
+                        <ul/>
                 </div>
+
             </nav>
 
         </div>

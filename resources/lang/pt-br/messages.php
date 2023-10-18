@@ -31,6 +31,8 @@ return [
     'deleted_fail' => 'Falha ao deletar registro!',
     'no_records' => 'Nenhum registro encontrado',
     
+    'login_invalid_credentials' => 'Credenciais fornecidas não correspondem aos nossos registros.',
+    
     // Animais
     'animal' => 'Animal',
     'animals' => 'Animais',

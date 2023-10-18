@@ -48,8 +48,14 @@ Route::post('/player-animals/explor', [\App\Http\Controllers\PlayerAnimalsContro
 
 Route::get('/login', [\App\Http\Controllers\UsersController::class, 'login'])
         ->name('users.login');
-Route::post('/do-login', [\App\Http\Controllers\UsersController::class, 'doLogin'])
-        ->name('users.doLogin');
+Route::get('/logout', [\App\Http\Controllers\UsersController::class, 'logout'])
+        ->name('users.logout');
+Route::get('/users/register', [\App\Http\Controllers\UsersController::class, 'register'])
+        ->name('users.register');
+Route::post('/users/store', [\App\Http\Controllers\UsersController::class, 'store'])
+        ->name('users.store');
+Route::post('/authenticate', [\App\Http\Controllers\UsersController::class, 'authenticate'])
+        ->name('users.authenticate');
 
 
 
