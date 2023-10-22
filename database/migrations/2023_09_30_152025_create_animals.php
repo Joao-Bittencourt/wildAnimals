@@ -13,8 +13,12 @@ return new class extends Migration {
             $table->integer('animal_family_id')->references('id')->on('animals_families');
             $table->string('name');
             $table->text('description')->nullable();
-            $table->integer('max_power');
-            $table->integer('min_power');
+            $table->integer('min_hp');
+            $table->integer('max_hp');
+            $table->integer('min_attack');
+            $table->integer('max_attack');
+            $table->integer('min_defense');
+            $table->integer('max_defense');
             $table->integer('status')->default('1');
             $table->timestamps();
         });

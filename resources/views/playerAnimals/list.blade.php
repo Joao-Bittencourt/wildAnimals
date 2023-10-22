@@ -25,7 +25,9 @@
                     <tr>
                         <th class="text-center">#</th>
                         <th class="text-center">{{ __('messages.name') }}</th>
-                        <th class="text-center">{{ __('messages.power') }}</th>
+                        <th class="text-center">{{ __('messages.hp') }}</th>
+                        <th class="text-center">{{ __('messages.attack') }}</th>
+                        <th class="text-center">{{ __('messages.defense') }}</th>
                         <th class="text-center">{{ __('messages.animal') }}</th>
                         <th class="text-center">{{ __('messages.status') }}</th>
 
@@ -36,7 +38,9 @@
                     <tr class="text-center">
                         <td>{{ $playeranimal->id }}</td>
                         <td>{{ $playeranimal->name }}</td>
-                        <td>{{ $playeranimal->power }}</td>
+                        <td>{{ $playeranimal->hp }}</td>
+                        <td>{{ $playeranimal->attack }}</td>
+                        <td>{{ $playeranimal->defense }}</td>
                         <td>{{ $playeranimal->animal->name }}</td>
                         <td>{{ $playeranimal->status == 1 ? __('messages.active') : __('messages.inactive') }}</td>
                     </tr>

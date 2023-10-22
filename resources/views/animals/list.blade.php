@@ -7,16 +7,15 @@
     </div>
 </div>
 <div class="table-responsive p-3">
-
-    <div class="row align-items-center justify-content-between mb-2">
-
-        <div class="col col-sm-6 text-left">
-            <a class="btn btn-success" href="{{ route('animals.create') }}">
-                <i class="fa fa-plus"></i> Criar
-            </a>
+    @if(!empty(Auth::user()->id))
+        <div class="row align-items-center justify-content-between mb-2">
+            <div class="col col-sm-6 text-left">
+                <a class="btn btn-success" href="{{ route('animals.create') }}">
+                    <i class="fa fa-plus"></i> Criar
+                </a>
+            </div>
         </div>
-
-    </div>
+    @endif
 
     <div class="row">
         <div class="col-sm-12">
@@ -26,7 +25,9 @@
                         <th class="text-center">#</th>
                         <th class="text-center">{{ __('messages.name') }}</th>
                         <th class="text-center">{{ __('messages.description') }}</th>
-                        <th class="text-center">{{ __('messages.min_max_power') }}</th>
+                        <th class="text-center">{{ __('messages.min_max_hp') }}</th>
+                        <th class="text-center">{{ __('messages.min_max_attack') }}</th>
+                        <th class="text-center">{{ __('messages.min_max_defense') }}</th>
                         <th class="text-center">{{ __('messages.especie') }}</th>
                         <th class="text-center">{{ __('messages.family') }}</th>
                         <th class="text-center">{{ __('messages.status') }}</th>
@@ -39,7 +40,9 @@
                         <td>{{ $animal->id }}</td>
                         <td>{{ $animal->name }}</td>
                         <td>{{ $animal->description }}</td>
-                        <td>{{ $animal->min_power . ' / ' . $animal->max_power }}</td>
+                        <td>{{ $animal->min_hp . ' / ' . $animal->max_hp }}</td>
+                        <td>{{ $animal->min_attack . ' / ' . $animal->max_attack }}</td>
+                        <td>{{ $animal->min_defense . ' / ' . $animal->max_defense }}</td>
                         <td>{{ $animal->animalFamily->name }}</td>
                         <td>{{ $animal->animalEspecie->name }}</td>
                         <td>{{ $animal->status == 1 ? __('messages.active') : __('messages.inactive') }}</td>

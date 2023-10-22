@@ -34,9 +34,13 @@ class AnimalsController extends Controller {
     public function store(Request $request) {
         $requestValidated = $request->validate([
             'name' => 'required|unique:animals|max:255',
-            'description' => 'required',
-            'min_power' => 'required|integer',
-            'max_power' => 'required|integer',
+            'description' => 'required|string',
+            'min_hp' => 'required|integer|rangeAnimalsStats:<,max_hp',
+            'max_hp' => 'required|integer|rangeAnimalsStats:>,min_hp',
+            'min_attack' => 'required|integer|rangeAnimalsStats:<,max_attack',
+            'max_attack' => 'required|integer|rangeAnimalsStats:>,min_attack',
+            'min_defense' => 'required|integer|rangeAnimalsStats:<,max_defense',
+            'max_defense' => 'required|integer|rangeAnimalsStats:>,min_defense',
             'animal_especie_id' => 'required|integer',
             'animal_family_id' => 'required|integer',
             'status' => 'required|integer|between:0,1',

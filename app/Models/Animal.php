@@ -12,12 +12,16 @@ class Animal extends Model {
     use HasFactory;
 
     public $fillable = [
-        'name',
-        'description',
-        'min_power',
-        'max_power',
         'animal_family_id',
         'animal_especie_id',
+        'name',
+        'description',
+        'min_hp',
+        'max_hp',
+        'min_attack',
+        'max_attack',
+        'min_defense',
+        'max_defense',
         'status',
         'created_at',
         'updated_at'

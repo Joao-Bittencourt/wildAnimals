@@ -18,7 +18,9 @@ class PlayerAnimalFactory extends Factory {
             'animal_id' => $animalId,
             'player_id' => $this->faker->randomElement($players->toArray()),
             'name' => $this->faker->name(),
-            'power' => $this->faker->numberBetween($animal->min_power, $animal->max_power),
+            'hp' => $this->faker->numberBetween($animal->min_hp, $animal->max_hp),
+            'attack' => $this->faker->numberBetween($animal->min_attack, $animal->max_attack),
+            'defense' => $this->faker->numberBetween($animal->min_defense, $animal->max_defense),
             'status' => 1,
             'created_at' => now(),
             'updated_at' => now()

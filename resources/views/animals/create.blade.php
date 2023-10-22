@@ -20,17 +20,10 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-2">
-                                <label for="name">Nome</label>
-                                <input class="form-control" type="text" name="name">
+                                <label for="name">{{ __('messages.name') }}</label>
+                                <input class="form-control" type="text" name="name" value="{{ old('name') }}">
                             </div>    
-                            <div class="col-md-2">
-                                <label for="min_power">Força min</label>
-                                <input class="form-control" type="number" min="0"  name="min_power">
-                            </div>    
-                            <div class="col-md-2">
-                                <label for="max_power">Força max</label>
-                                <input class="form-control" type="number" max="4096" name="max_power">
-                            </div>    
+                            
                             <div class="col-md-2">
                                 <label for="animal_especie_id">Especie</label>
                                 <select name="animal_especie_id" class="form-control">
@@ -57,9 +50,35 @@
                             </div>    
                         </div>    
                         <div class="row">
+                            <div class="col-md-2">
+                                <label for="min_hp">{{ __('messages.min_hp') }}</label>
+                                <input class="form-control" type="number" name="min_hp" value="{{ old('min_hp') }}">
+                            </div>    
+                            <div class="col-md-2">
+                                <label for="max_hp">{{ __('messages.max_hp') }}</label>
+                                <input class="form-control" type="number" name="max_hp" value="{{ old('max_hp') }}">
+                            </div>    
+                            <div class="col-md-2">
+                                <label for="min_attack">{{ __('messages.min_attack') }}</label>
+                                <input class="form-control" type="number" name="min_attack" value="{{ old('min_attack') }}">
+                            </div>    
+                            <div class="col-md-2">
+                                <label for="max_attack">{{ __('messages.max_attack') }}</label>
+                                <input class="form-control" type="number" name="max_attack" value="{{ old('max_attack') }}">
+                            </div>    
+                            <div class="col-md-2">
+                                <label for="min_defense">{{ __('messages.min_defense') }}</label>
+                                <input class="form-control" type="number" name="min_defense" value="{{ old('min_defense') }}">
+                            </div>    
+                            <div class="col-md-2">
+                                <label for="max_defense">{{ __('messages.max_defense') }}</label>
+                                <input class="form-control" type="number" name="max_defense" value="{{ old('max_defense') }}">
+                            </div>    
+                        </div>
+                        <div class="row">
                             <div class="col-md-12">
                                 <label for="description">Descrição</label>
-                                <textarea class="form-control" name="description" rows="3"></textarea>      
+                                <textarea class="form-control" name="description" rows="3" value="{{ old('description') }}"></textarea>      
                             </div>
 
 

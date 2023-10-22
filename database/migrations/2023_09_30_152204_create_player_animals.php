@@ -14,7 +14,9 @@ return new class extends Migration
             $table->integer('animal_id')->references('id')->on('animals');
             $table->integer('player_id')->references('id')->on('players');
             $table->string('name');
-            $table->integer('power');
+            $table->integer('hp');
+            $table->integer('attack');
+            $table->integer('defense');
             $table->integer('status')->default('1'); 
             $table->timestamps();
         });

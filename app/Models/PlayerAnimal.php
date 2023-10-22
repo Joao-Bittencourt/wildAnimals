@@ -15,7 +15,9 @@ class PlayerAnimal extends Model {
         'animal_id',
         'player_id',
         'name',
-        'power',
+        'hp',
+        'attack',
+        'defense',
         'status',
         'created_at',
         'updated_at'

@@ -33,6 +33,11 @@ return [
     
     'login_invalid_credentials' => 'Credenciais fornecidas não correspondem aos nossos registros.',
     
+    // Usuarios
+    'nick_name' => 'Apelido',
+    'password_confirmation' => 'Confirme a senha',
+    'register' => 'Cadastrar',
+    
     // Animais
     'animal' => 'Animal',
     'animals' => 'Animais',
@@ -40,9 +45,19 @@ return [
     'especie' => 'Espécie',
     'family' => 'Família',
     'families' => 'Famílias',
-    'min_max_power' => 'Força Min / Max',
-    'power' => 'Força',
-    
+    'min_max_hp' => 'HP Min / Max',
+    'min_max_attack' => 'ATK Min / Max',
+    'min_max_defense' => 'DEF Min / Max',
+    'hp' => 'HP',
+    'min_hp' => 'HP Min',
+    'max_hp' => 'HP Max',
+    'attack' => 'ATK',
+    'min_attack' => 'ATK Min',
+    'max_attack' => 'ATK Max',
+    'defense' => 'DEF',
+    'min_defense' => 'DEF Min',
+    'max_defense' => 'DEF Max',
+
     // Animal familias
     'animal_families' => 'Animal Família',
     
