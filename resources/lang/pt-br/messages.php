@@ -62,6 +62,9 @@ return [
     'animal_families' => 'Animal Família',
     
     // Animal especies
-    'animal_especies' => 'Animal Especie'
+    'animal_especies' => 'Animal Especie',
+    
+    // Player animals
+    'explorer' => 'Explorar'
   
 ];

@@ -43,8 +43,8 @@
                         <td>{{ $animal->min_hp . ' / ' . $animal->max_hp }}</td>
                         <td>{{ $animal->min_attack . ' / ' . $animal->max_attack }}</td>
                         <td>{{ $animal->min_defense . ' / ' . $animal->max_defense }}</td>
-                        <td>{{ $animal->animalFamily->name }}</td>
                         <td>{{ $animal->animalEspecie->name }}</td>
+                        <td>{{ $animal->animalFamily->name }}</td>
                         <td>{{ $animal->status == 1 ? __('messages.active') : __('messages.inactive') }}</td>
                     </tr>
                     @empty

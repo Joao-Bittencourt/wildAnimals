@@ -1,44 +1,32 @@
 @extends('layouts.app')
 
 @section('content')
- 
-<div class="d-flex justify-content-between w-100 flex-wrap">
-    <div class="mb-3 mb-lg-0">
-        <h2>{{ __('messages.animals') }}</h2>
-    </div>
+
+<div class="mb-3 text-center">
+    <h2>{{ __('messages.animals') }}</h2>
 </div>
+
 <div class="card-body mt-3">
     <div class="row">
         <div class="col-sm-12">
-            <table class="table table-sm table-hover table-centered table-nowrap mb-0">
-                <thead class="thead-light">
-                    <tr>
-                       
-                        <th class="text-center">{{ __('messages.animal_families') }}</th>
-                        <th class="text-center">{{ __('messages.actions') }}</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($animalFamilies as $animalFamily)
-                    <tr class="text-center">
-                        <td>{{ $animalFamily->name }}</td>
-                        <td> 
-                            <form method="POST" action="{{ route('playerAnimals.explor') }}">
-                            @csrf
-                            <input type="hidden" name="animal_family_id" value="{{ $animalFamily->id }}" >
-                            <button type="submit">Submit</button>
-                            </form>
-                    </tr>
-                    @empty
-                    <tr class="text-center">
-                        <td colspan="6">{{ __('messages.no_records') }}</td>
-                    </tr>
-                    @endforelse
-                </tbody>
-            </table>
-
-
+            <form class="form-horizontal" method="post" action="{{ route('playerAnimals.explor') }}">
+                @csrf
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="animal_family_id">Familia</label>
+                        <select name="animal_family_id" class="form-control">
+                            @foreach($animalFamilies as $animalFamily)
+                            <option value="{{$animalFamily->id}}">{{$animalFamily->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>    
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-12 mt-4">
+                        <button type="submit" class="btn btn-success">{{ __('messages.explorer')}}</button>   
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

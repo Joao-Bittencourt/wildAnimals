@@ -18,7 +18,7 @@ class PlayerAnimalsController extends Controller {
 
     public function explorer() {
         
-        $animalFamilies = \App\Models\AnimalFamily::all();
+        $animalFamilies = \App\Models\AnimalFamily::has('animals')->get();
         return view('playerAnimals.explorar', ['animalFamilies' => $animalFamilies]);
     }
     
@@ -28,7 +28,7 @@ class PlayerAnimalsController extends Controller {
         $animalFamilyId = $request->animal_family_id ?? 0;
         
         $animal = \App\Models\Animal::inRandomOrder()->where('animal_family_id', $animalFamilyId)->get()->first();
-    
+      
         $faker = Faker\Factory::create();
         $animalPlayer = [
             'animal_id' => $animal->id,
@@ -39,6 +39,7 @@ class PlayerAnimalsController extends Controller {
             'defense' => $faker->numberBetween($animal->min_defense, $animal->max_defense),
             'status' => 1
         ];
+        
         
         $playerAnimal = new PlayerAnimal($animalPlayer);
         $playerAnimal->save();
