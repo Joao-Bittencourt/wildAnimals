@@ -11,7 +11,7 @@ class PlayerAnimalsController extends Controller {
 
     public function list() {
         
-        $playerLoggedId = Auth::user()->player->id;
+        $playerLoggedId = Auth::user()->player->id ?? 0;
         $playerAnimals = PlayerAnimal::all()->where('player_id', $playerLoggedId);
         return view('playerAnimals.list', ['playerAnimals' => $playerAnimals]);
     }
