@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use App\Models\User;
 use Tests\TestCase;
 
 class AnimalFamiliesControllerTest extends TestCase {
@@ -12,14 +13,24 @@ class AnimalFamiliesControllerTest extends TestCase {
         WithFaker;
 
     public function testListAnimalFamiliesGetRequestSuccess(): void {
-        $response = $this->get('/animal-families');
+        
+         $loggedUser = User::factory()->create();
+
+        $response = $this
+                ->actingAs($loggedUser)
+                ->get(route('animalFamilies.list'));
 
         $response->assertViewIs('animalFamilies.list');
         $response->assertStatus(200);
     }
 
     public function testCreateAnimalFamiliesGetRequestSuccess(): void {
-        $response = $this->get('/animal-families/create');
+        
+        $loggedUser = User::factory()->create();
+
+        $response = $this
+                ->actingAs($loggedUser)
+                ->get(route('animalFamilies.create'));
 
         $response->assertViewIs('animalFamilies.create');
         $response->assertStatus(200);
@@ -27,6 +38,9 @@ class AnimalFamiliesControllerTest extends TestCase {
 
     public function testStoreAnimalFamiliesPostRequestSuccess(): void {
 
+        $loggedUser = User::factory()->create();
+        $this->actingAs($loggedUser);
+        
         $name = $this->faker->word;
         $description = $this->faker->word;
         $status = (int) $this->faker->boolean();
