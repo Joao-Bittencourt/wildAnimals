@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class animalsControllerTest extends TestCase {
+class AnimalsControllerTest extends TestCase {
 
     use RefreshDatabase,
         WithFaker;
