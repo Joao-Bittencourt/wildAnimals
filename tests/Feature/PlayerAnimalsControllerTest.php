@@ -30,7 +30,7 @@ class PlayerAnimalsControllerTest extends TestCase {
                 ->actingAs($loggedUser)
                 ->get(route('playerAnimals.explorer'));
 
-        $response->assertViewIs('playerAnimals.explorar');
+        $response->assertViewIs('playerAnimals.explorer');
         $response->assertStatus(200);
     }
     
@@ -49,7 +49,7 @@ class PlayerAnimalsControllerTest extends TestCase {
             'animal_family_id' => $animalFamily->id,
         ]);
 
-        $response->assertRedirect(route('playerAnimals.list'));
+        $response->assertRedirect(route('playerAnimals.explorer'));
         $response->assertStatus(302);
     }
 
