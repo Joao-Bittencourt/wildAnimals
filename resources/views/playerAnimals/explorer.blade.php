@@ -11,6 +11,7 @@
         <div class="col-sm-12">
             <form class="form-horizontal" method="post" action="{{ route('playerAnimals.explor') }}">
                 @csrf
+               
                 <div class="row">
                     <div class="col-md-12">
                         <label for="animal_family_id">Familia</label>
@@ -27,6 +28,7 @@
                     </div>
                 </div>
             </form>
+            
         </div>
     </div>
 </div>

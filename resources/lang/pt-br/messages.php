@@ -65,6 +65,7 @@ return [
     'animal_especies' => 'Animal Especie',
     
     // Player animals
-    'explorer' => 'Explorar'
+    'explorer' => 'Explorar',
+    'playerAnimals_player_in_exploring' => 'Jogador já está em exploração.',
   
 ];
