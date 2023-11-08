@@ -20,7 +20,10 @@ class PlayerAnimalsController extends Controller {
     public function explorer() {
         
         $animalFamilies = \App\Models\AnimalFamily::has('animals')->get();
-        return view('playerAnimals.explorer', ['animalFamilies' => $animalFamilies]);
+        return view('playerAnimals.explorer', [
+            'animalFamilies' => $animalFamilies,
+            'timeExploration' => session('timeExploration')
+        ]);
     }
     
     public function explor(Request $request) {
@@ -55,7 +58,7 @@ class PlayerAnimalsController extends Controller {
         $playerAnimal = new PlayerAnimal($animalPlayer);
         $playerAnimal->save();
 
-        $timeExploration = date('y-m-d h:i:s', strtotime('now + 29'));
+        $timeExploration = date('s', strtotime('now + 29 seconds'));
         Cache::put('player-in-exploring-' . $playerId, $timeExploration, 30);
         
         return redirect(route('playerAnimals.explorer'))->with([
