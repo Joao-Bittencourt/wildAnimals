@@ -58,8 +58,8 @@ class PlayerAnimalsController extends Controller {
         $playerAnimal = new PlayerAnimal($animalPlayer);
         $playerAnimal->save();
 
-        $timeExploration = date('s', strtotime('now + 29 seconds'));
-        Cache::put('player-in-exploring-' . $playerId, $timeExploration, 30);
+        $timeExploration = 30;
+        Cache::put('player-in-exploring-' . $playerId, $timeExploration, $timeExploration);
         
         return redirect(route('playerAnimals.explorer'))->with([
             'timeExploration' => $timeExploration 
