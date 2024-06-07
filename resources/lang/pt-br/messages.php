@@ -30,14 +30,14 @@ return [
     'created_success' => 'Dados salvos com sucesso!',
     'deleted_fail' => 'Falha ao deletar registro!',
     'no_records' => 'Nenhum registro encontrado',
-    
+
     'login_invalid_credentials' => 'Credenciais fornecidas não correspondem aos nossos registros.',
-    
+
     // Usuarios
     'nick_name' => 'Apelido',
     'password_confirmation' => 'Confirme a senha',
     'register' => 'Cadastrar',
-    
+
     // Animais
     'animal' => 'Animal',
     'animals' => 'Animais',
@@ -60,12 +60,12 @@ return [
 
     // Animal familias
     'animal_families' => 'Animal Família',
-    
+
     // Animal especies
     'animal_especies' => 'Animal Especie',
-    
+
     // Player animals
     'explorer' => 'Explorar',
     'playerAnimals_player_in_exploring' => 'Jogador já está em exploração.',
-  
+
 ];

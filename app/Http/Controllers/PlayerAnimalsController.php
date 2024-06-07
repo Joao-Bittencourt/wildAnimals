@@ -2,47 +2,52 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Faker;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Auth;
 use App\Models\PlayerAnimal;
+use Faker;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
-class PlayerAnimalsController extends Controller {
+class PlayerAnimalsController extends Controller
+{
+    public function list()
+    {
 
-    public function list() {
-        
         $playerLoggedId = Auth::user()->player->id ?? 0;
         $playerAnimals = PlayerAnimal::all()->where('player_id', $playerLoggedId);
+
         return view('playerAnimals.list', ['playerAnimals' => $playerAnimals]);
     }
 
-    public function explorer() {
-        
+    public function explorer()
+    {
+
         $animalFamilies = \App\Models\AnimalFamily::has('animals')->get();
+
         return view('playerAnimals.explorer', [
             'animalFamilies' => $animalFamilies,
-            'timeExploration' => session('timeExploration')
+            'timeExploration' => session('timeExploration'),
         ]);
     }
-    
-    public function explor(Request $request) {
-        
+
+    public function explor(Request $request)
+    {
+
         $playerId = Auth::user()->player->id;
-        
-        if (Cache::has('player-in-exploring-' . $playerId)) {
+
+        if (Cache::has('player-in-exploring-'.$playerId)) {
             return redirect(route('playerAnimals.explorer'))->with([
                 'messages' => [
-                    'message' => __('messages.playerAnimals_player_in_exploring')
+                    'message' => __('messages.playerAnimals_player_in_exploring'),
                 ],
-                'timeExploration' => Cache::get('player-in-exploring-' . $playerId) 
+                'timeExploration' => Cache::get('player-in-exploring-'.$playerId),
             ]);
         }
-      
+
         $animalFamilyId = $request->animal_family_id ?? 0;
-        
+
         $animal = \App\Models\Animal::inRandomOrder()->where('animal_family_id', $animalFamilyId)->get()->first();
-      
+
         $faker = Faker\Factory::create();
         $animalPlayer = [
             'animal_id' => $animal->id,
@@ -51,33 +56,32 @@ class PlayerAnimalsController extends Controller {
             'hp' => $faker->numberBetween($animal->min_hp, $animal->max_hp),
             'attack' => $faker->numberBetween($animal->min_attack, $animal->max_attack),
             'defense' => $faker->numberBetween($animal->min_defense, $animal->max_defense),
-            'status' => 1
+            'status' => 1,
         ];
-        
-        
+
         $playerAnimal = new PlayerAnimal($animalPlayer);
         $playerAnimal->save();
 
         $timeExploration = 30;
-        Cache::put('player-in-exploring-' . $playerId, $timeExploration, $timeExploration);
-        
+        Cache::put('player-in-exploring-'.$playerId, $timeExploration, $timeExploration);
+
         return redirect(route('playerAnimals.explorer'))->with([
-            'timeExploration' => $timeExploration 
+            'timeExploration' => $timeExploration,
         ]);
     }
-//    public function store(Request $request) {
-//        //
-//    }
-//
-//    public function update(Request $request, string $id) {
-//        //
-//    }
-//
-//    public function show(string $id) {
-//        //
-//    }
-//
-//    public function destroy(string $id) {
-//        //
-//    }
+    //    public function store(Request $request) {
+    //        //
+    //    }
+    //
+    //    public function update(Request $request, string $id) {
+    //        //
+    //    }
+    //
+    //    public function show(string $id) {
+    //        //
+    //    }
+    //
+    //    public function destroy(string $id) {
+    //        //
+    //    }
 }

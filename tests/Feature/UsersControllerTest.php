@@ -6,12 +6,13 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class UsersControllerTest extends TestCase {
+class UsersControllerTest extends TestCase
+{
+    use RefreshDatabase;
+    use WithFaker;
 
-    use RefreshDatabase,
-        WithFaker;
-
-    public function testRegisterGetRequestSuccess(): void {
+    public function testRegisterGetRequestSuccess(): void
+    {
 
         $response = $this->get(route('users.register'));
 
@@ -19,7 +20,8 @@ class UsersControllerTest extends TestCase {
         $response->assertStatus(200);
     }
 
-    public function testLoginGetRequestSuccess(): void {
+    public function testLoginGetRequestSuccess(): void
+    {
 
         $response = $this->get(route('users.login'));
 
@@ -27,7 +29,8 @@ class UsersControllerTest extends TestCase {
         $response->assertStatus(200);
     }
 
-    public function testStorePostRequestSuccess(): void {
+    public function testStorePostRequestSuccess(): void
+    {
 
         $name = $this->faker->word;
         $email = $this->faker->email();
@@ -37,46 +40,48 @@ class UsersControllerTest extends TestCase {
             'nick_name' => $name,
             'email' => $email,
             'password' => $email,
-            'password_confirmation' => $email
+            'password_confirmation' => $email,
         ]);
 
         $response->assertRedirect(route('playerAnimals.list'));
         $response->assertStatus(302);
     }
 
-    public function testAuthenticatePostRequestSuccess(): void {
+    public function testAuthenticatePostRequestSuccess(): void
+    {
 
         $user = \App\Models\User::factory()
-                ->has(\App\Models\Player::factory()->count(1))
-                ->create();
+            ->has(\App\Models\Player::factory()->count(1))
+            ->create();
 
         $response = $this->post(route('users.authenticate'), [
             'email' => $user->email,
-            'password' => 'password'
+            'password' => 'password',
         ]);
 
         $response->assertRedirect(route('playerAnimals.list'));
         $response->assertStatus(302);
     }
 
-    public function testAuthenticatePostRequestError(): void {
+    public function testAuthenticatePostRequestError(): void
+    {
 
         $response = $this->post(route('users.authenticate'), [
             'email' => 'invalid@email.com',
-            'password' => 'invalid_password'
+            'password' => 'invalid_password',
         ]);
 
-//        $response->assertRedirect(route('users.login'));
+        //        $response->assertRedirect(route('users.login'));
         $response->assertSessionHasErrors('email');
         $response->assertStatus(302);
     }
 
-    public function testLogoutGetRequestSuccess(): void {
+    public function testLogoutGetRequestSuccess(): void
+    {
 
         $response = $this->get(route('users.logout'));
 
         $response->assertRedirect(route('users.login'));
         $response->assertStatus(302);
     }
-
 }

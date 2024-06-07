@@ -2,43 +2,46 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use App\Models\User;
 use Tests\TestCase;
 
-class AnimalsControllerTest extends TestCase {
+class AnimalsControllerTest extends TestCase
+{
+    use RefreshDatabase;
+    use WithFaker;
 
-    use RefreshDatabase,
-        WithFaker;
-
-    public function testListAnimalGetRequestSuccess(): void {
+    public function testListAnimalGetRequestSuccess(): void
+    {
         $response = $this->get(route('animals.list'));
 
         $response->assertViewIs('animals.list');
         $response->assertStatus(200);
     }
 
-    public function testCreateAnimalGetRequestSuccess(): void {
+    public function testCreateAnimalGetRequestSuccess(): void
+    {
 
         $loggedUser = User::factory()->create();
 
         $response = $this
-                ->actingAs($loggedUser)
-                ->get(route('animals.create'));
+            ->actingAs($loggedUser)
+            ->get(route('animals.create'));
 
         $response->assertViewIs('animals.create');
         $response->assertStatus(200);
     }
-    
-    public function testStoreAnimalPostRequestSuccess(): void {
+
+    public function testStoreAnimalPostRequestSuccess(): void
+    {
 
         $loggedUser = User::factory()->create();
         $this->actingAs($loggedUser);
-        
+
         $animalEspecie = \App\Models\AnimalEspecie::factory()->create();
         $animalFamily = \App\Models\AnimalFamily::factory()->create();
-        
+
         $name = $this->faker->word;
         $description = $this->faker->word;
         $status = (int) $this->faker->boolean();
@@ -60,5 +63,4 @@ class AnimalsControllerTest extends TestCase {
         $response->assertRedirect(route('animals.list'));
         $response->assertStatus(302);
     }
-
 }

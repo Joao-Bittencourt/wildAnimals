@@ -4,11 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Animal;
-use App\Models\Player;
 
-class PlayerAnimal extends Model {
-
+class PlayerAnimal extends Model
+{
     use HasFactory;
 
     public $fillable = [
@@ -20,14 +18,16 @@ class PlayerAnimal extends Model {
         'defense',
         'status',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
-    public function animal() {
+    public function animal()
+    {
         return $this->belongsTo(Animal::class);
     }
-    
-    public function player() {
+
+    public function player()
+    {
         return $this->belongsTo(Player::class);
     }
 }

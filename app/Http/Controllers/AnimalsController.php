@@ -2,28 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Animal;
+use App\Models\AnimalEspecie;
+use App\Models\AnimalFamily;
 use Illuminate\Http\Request;
-use \App\Models\Animal;
-use \App\Models\AnimalEspecie;
-use \App\Models\AnimalFamily;
 
-class AnimalsController extends Controller {
-
-    public function list() {
+class AnimalsController extends Controller
+{
+    public function list()
+    {
         return view('animals.list', [
-            'animals' => Animal::all()
+            'animals' => Animal::all(),
         ]);
     }
 
-    public function create() {
+    public function create()
+    {
 
         $animalEspecies = AnimalEspecie::all();
         $animalFamilies = AnimalFamily::all();
 
         $arStatus = [
             (object) ['id' => 1, 'name' => 'Ativo'],
-            (object) ['id' => 0, 'name' => 'Inativo']
+            (object) ['id' => 0, 'name' => 'Inativo'],
         ];
+
         return view('animals.create', [
             'animalEspecies' => $animalEspecies,
             'animalFamilies' => $animalFamilies,
@@ -31,7 +34,8 @@ class AnimalsController extends Controller {
         ]);
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $requestValidated = $request->validate([
             'name' => 'required|unique:animals|max:255',
             'description' => 'required|string',
@@ -51,8 +55,7 @@ class AnimalsController extends Controller {
         $animal->save();
 
         return redirect()
-                        ->route('animals.list')
-                        ->with(['alert-success' => __('messages.created_success')]);
+            ->route('animals.list')
+            ->with(['alert-success' => __('messages.created_success')]);
     }
-
 }
