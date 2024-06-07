@@ -40,9 +40,9 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-        server: ${{ secrets.SITE_SERVER_FTP}}
-        username: ${{ secrets.SITE_USER_FTP}}
-        password: ${{ secrets.SITE_PASS_FTP}}
+        server: ${{ vars.SITE_SERVER_FTP}}
+        username: ${{ vars.SITE_USER_FTP}}
+        password: ${{ vars.SITE_PASS_FTP}}
         server-dir: ./public_html/
         exclude: |
           **/.git*
