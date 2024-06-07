@@ -1,0 +1,55 @@
+name: 2 Deploy Site on push
+on:
+  push:
+    branches:
+      - master
+      - develop
+jobs:
+  web-deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+     
+    steps:
+    - name: Get the latest code
+      uses: actions/checkout@v4.1.1
+      with:
+          php-version: '8.1'
+    - name: Install Dependencies
+      run: | 
+          composer update --prefer-lowest --prefer-stable
+          composer run-script post-install-cmd-deploy --no-interaction
+          
+    - name: config database
+      run: |
+        echo '<?php 
+        $DATABASE_URL = "${{ vars.DATABASE_URL_FTP }}";
+        $DATABASE_URL = $DATABASE_URL ?? null;
+
+        $EMAIL_TRASPORT_HOST = "${{ vars.EMAIL_TRASPORT_HOST }}";
+        $EMAIL_TRASPORT_PORT = "${{ vars.EMAIL_TRASPORT_PORT }}";
+        $EMAIL_TRASPORT_USER = "${{ vars.EMAIL_TRASPORT_USER }}";
+        $EMAIL_TRASPORT_PASSWORD = "${{ vars.EMAIL_TRASPORT_PASSWORD }}";
+
+        $APP_ID_MONGO = "${{ vars.APP_ID_MONGO }}";
+        $API_KEY_MONGO = "${{ vars.API_KEY_MONGO }}";
+
+        define('DATABASE_URL', $DATABASE_URL);
+        define('EMAIL_TRASPORT_HOST', $EMAIL_TRASPORT_HOST ?? null);
+        define('EMAIL_TRASPORT_PORT', $EMAIL_TRASPORT_PORT ?? null);
+        define('EMAIL_TRASPORT_USER', $EMAIL_TRASPORT_USER ?? null);
+        define('EMAIL_TRASPORT_PASSWORD', $EMAIL_TRASPORT_PASSWORD ?? null);
+
+        ?>' > ./server_config.php
+      
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.SITE_SERVER_FTP}}
+        username: ${{ secrets.SITE_USER_FTP}}
+        password: ${{ secrets.SITE_PASS_FTP}}
+        server-dir: ./public_html/
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/tests*
+          **/tests/**
