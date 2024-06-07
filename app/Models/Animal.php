@@ -4,11 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\AnimalFamily;
-use App\Models\AnimalEspecie;
 
-class Animal extends Model {
-
+class Animal extends Model
+{
     use HasFactory;
 
     public $fillable = [
@@ -24,14 +22,16 @@ class Animal extends Model {
         'max_defense',
         'status',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
-    public function animalFamily() {
+    public function animalFamily()
+    {
         return $this->belongsTo(AnimalFamily::class);
     }
-    
-    public function animalEspecie() {
+
+    public function animalEspecie()
+    {
         return $this->belongsTo(AnimalEspecie::class);
     }
 }

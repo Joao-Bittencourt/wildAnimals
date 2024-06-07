@@ -131,11 +131,11 @@ return [
             'rule-name' => 'custom-message',
         ],
         'animal_especie_id' => [
-            'required' => 'o campo Especie é obrigatorio.'
+            'required' => 'o campo Especie é obrigatorio.',
         ],
         'animal_family_id' => [
-            'required' => 'o campo Familia é obrigatorio.'
-        ]
+            'required' => 'o campo Familia é obrigatorio.',
+        ],
     ],
     /*
       |--------------------------------------------------------------------------

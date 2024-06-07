@@ -4,10 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Animal;
 
-class AnimalFamily extends Model {
-
+class AnimalFamily extends Model
+{
     use HasFactory;
 
     public $fillable = [
@@ -15,7 +14,7 @@ class AnimalFamily extends Model {
         'description',
         'status',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
     public function animals()

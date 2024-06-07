@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\ServiceProvider;
 
 class CustomValidationServiceProvider extends ServiceProvider
 {
@@ -21,23 +21,24 @@ class CustomValidationServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Validator::extend('rangeAnimalsStats', function ($attribute, $value, $parameters, $validator) {
-           return $this->validateRangeAnimalsStats($attribute, $value, $parameters, $validator);
+            return $this->validateRangeAnimalsStats($attribute, $value, $parameters, $validator);
         });
     }
-    
+
     // @ToDo: refatorar
-    private function validateRangeAnimalsStats($attribute, $value, $parameters, $validator) {
-                
+    private function validateRangeAnimalsStats($attribute, $value, $parameters, $validator)
+    {
+
         $operador = $parameters[0];
         $valorReferencia = $parameters[1];
-        
+
         switch ($operador) {
-            case '>' :
+            case '>':
                 return $value > $validator->getData()[$valorReferencia];
-            case '<' :
+            case '<':
                 return $value < $validator->getData()[$valorReferencia];
         }
-        
+
         return false;
     }
 }

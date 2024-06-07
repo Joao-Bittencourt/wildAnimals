@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AnimalEspecie extends Model {
-
+class AnimalEspecie extends Model
+{
     use HasFactory;
 
     public $fillable = [
@@ -14,7 +14,6 @@ class AnimalEspecie extends Model {
         'description',
         'status',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
-
 }

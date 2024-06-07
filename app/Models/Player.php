@@ -4,10 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
 
-class Player extends Model {
-
+class Player extends Model
+{
     use HasFactory;
 
     public $fillable = [
@@ -16,11 +15,11 @@ class Player extends Model {
         'nick_name',
         'status',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
-
 }
