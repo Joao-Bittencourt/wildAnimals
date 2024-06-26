@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (Request $request) {
+    Log::info('RequestLog', [
+        'ip' => $request->ip(),
+        'method' => $request->method(),
+        'url' => $request->fullUrl(),
+    ]);
+
     return view('welcome');
 });
 
@@ -21,7 +30,7 @@ Route::get('/animals', [\App\Http\Controllers\AnimalsController::class, 'list'])
     ->name('animals.list');
 
 Route::get('/login', [\App\Http\Controllers\UsersController::class, 'login'])
-        ->name('users.login');
+    ->name('users.login');
 Route::get('/logout', [\App\Http\Controllers\UsersController::class, 'logout'])
     ->name('users.logout');
 Route::get('/users/register', [\App\Http\Controllers\UsersController::class, 'register'])
@@ -58,4 +67,10 @@ Route::middleware(['auth'])->group(function () {
         ->name('playerAnimals.explorer');
     Route::post('/player-animals/explor', [\App\Http\Controllers\PlayerAnimalsController::class, 'explor'])
         ->name('playerAnimals.explor');
+});
+
+Route::get('/run-migrations', function () {
+    Artisan::call('migrate');
+
+    return 'sucesso!';
 });
