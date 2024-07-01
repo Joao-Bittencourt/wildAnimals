@@ -44,19 +44,21 @@
                 background-color: #228B22;
             }
         </style>
+         @livewireStyles
     </head>
     <body class="container">
-
+        
         <div class="text-center"> 
             <x-nav-menu></x-nav-menu>
             
         </div>
+        <x-alerts></x-alerts>
         <div class="card mt-3">
             <div class="card-body">
                 @yield('content')
             </div>
         </div>
-
+        @livewireScripts
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

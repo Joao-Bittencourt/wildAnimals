@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PlayerAnimal;
+use DateTime;
 use Faker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,9 +25,13 @@ class PlayerAnimalsController extends Controller
 
         $animalFamilies = \App\Models\AnimalFamily::has('animals')->get();
 
+        $playerLoggedId = Auth::user()->player->id ?? 0;
+        $timeExploration = Cache::get('player-in-exploring-'.$playerLoggedId);
+        $time = $timeExploration ? (new DateTime($timeExploration))->diff(new DateTime(now()))->s : null;
+
         return view('playerAnimals.explorer', [
             'animalFamilies' => $animalFamilies,
-            'timeExploration' => session('timeExploration'),
+            'timeExploration' => $time,
         ]);
     }
 
@@ -36,11 +41,14 @@ class PlayerAnimalsController extends Controller
         $playerId = Auth::user()->player->id;
 
         if (Cache::has('player-in-exploring-'.$playerId)) {
+
+            $timeExploration = Cache::get('player-in-exploring-'.$playerId);
+            $time =  (new DateTime($timeExploration))->diff(new DateTime(now()))->s;
             return redirect(route('playerAnimals.explorer'))->with([
                 'messages' => [
                     'message' => __('messages.playerAnimals_player_in_exploring'),
                 ],
-                'timeExploration' => Cache::get('player-in-exploring-'.$playerId),
+                'timeExploration' => $time,
             ]);
         }
 
@@ -62,26 +70,13 @@ class PlayerAnimalsController extends Controller
         $playerAnimal = new PlayerAnimal($animalPlayer);
         $playerAnimal->save();
 
-        $timeExploration = 30;
-        Cache::put('player-in-exploring-'.$playerId, $timeExploration, $timeExploration);
+        $timeExplorationCache = 30;
+        $timeExploration = date('Y-m-d H:i:s', strtotime("+{$timeExplorationCache} seconds"));
+        Cache::put('player-in-exploring-'.$playerId, $timeExploration, $timeExplorationCache);
 
         return redirect(route('playerAnimals.explorer'))->with([
             'timeExploration' => $timeExploration,
         ]);
     }
-    //    public function store(Request $request) {
-    //        //
-    //    }
-    //
-    //    public function update(Request $request, string $id) {
-    //        //
-    //    }
-    //
-    //    public function show(string $id) {
-    //        //
-    //    }
-    //
-    //    public function destroy(string $id) {
-    //        //
-    //    }
+
 }
