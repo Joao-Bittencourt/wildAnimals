@@ -10,7 +10,7 @@ class AnimalFamiliesController extends Controller
     public function list()
     {
         return view('animalFamilies.list', [
-            'animalFamilies' => AnimalFamily::all(),
+            'animalFamilies' => AnimalFamily::paginate(Controller::DEFAULT_PAGE_SIZE),
         ]);
     }
 
@@ -43,17 +43,4 @@ class AnimalFamiliesController extends Controller
             ->route('animalFamilies.list')
             ->with(['alert-success' => __('messages.created_success')]);
     }
-
-    //    public function update(Request $request, string $id) {
-    //        //
-    //    }
-    //
-    //    public function show(string $id) {
-    //        //
-    //    }
-    //
-    //
-    //    public function destroy(string $id) {
-    //        //
-    //    }
 }

@@ -12,7 +12,7 @@ class AnimalsController extends Controller
     public function list()
     {
         return view('animals.list', [
-            'animals' => Animal::all(),
+            'animals' => Animal::paginate(Controller::DEFAULT_PAGE_SIZE),
         ]);
     }
 

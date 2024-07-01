@@ -22,6 +22,7 @@
 
     <div class="row">
         <div class="col-sm-12">
+            <x-paginate-count :data=$animalFamilies />
             <table class="table table-sm table-hover table-centered table-nowrap mb-0">
                 <thead class="thead-light">
                     <tr>
@@ -48,7 +49,9 @@
                 </tbody>
             </table>
 
-
+            <div class="d-flex justify-content-center mt-2">
+                {{ $animalFamilies->links() }}
+            </div>
         </div>
     </div>
 
