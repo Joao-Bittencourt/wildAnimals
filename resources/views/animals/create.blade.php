@@ -16,7 +16,7 @@
                         </ul>
                     </div>
                     @endif
-                    <form class="form-horizontal" method="post" action="{{ url('animals/store') }}">
+                    <form class="form-horizontal" method="post" action="{{ url('animals/store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-2">
@@ -78,12 +78,17 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="description">Descrição</label>
-                                <textarea class="form-control" name="description" rows="3" value="{{ old('description') }}"></textarea>      
+                                <textarea class="form-control" name="description" rows="3" value="{{ old('description') }}">{{ old('description') }}</textarea>      
                             </div>
 
 
                         </div>
 
+                        <div class="row">
+                            <div class="col-md-6 mt-2">
+                                <input type="file" name="image" class="form-control">
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-6 mt-2">
                                 <button type="submit" class="btn btn-success">Criar</button>   

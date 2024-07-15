@@ -63,6 +63,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/player-animals', [\App\Http\Controllers\PlayerAnimalsController::class, 'list'])
         ->name('playerAnimals.list');
+
+    Route::get('/player-animals/show/{playerAnimal}', [\App\Http\Controllers\PlayerAnimalsController::class, 'show'])
+        ->name('playerAnimals.show');
+
     Route::get('/player-animals/explorer', [\App\Http\Controllers\PlayerAnimalsController::class, 'explorer'])
         ->name('playerAnimals.explorer');
     Route::post('/player-animals/explor', [\App\Http\Controllers\PlayerAnimalsController::class, 'explor'])

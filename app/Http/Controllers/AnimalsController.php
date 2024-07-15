@@ -47,9 +47,21 @@ class AnimalsController extends Controller
             'max_defense' => 'required|integer|rangeAnimalsStats:>,min_defense',
             'animal_especie_id' => 'required|integer',
             'animal_family_id' => 'required|integer',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg',
             'status' => 'required|integer|between:0,1',
         ]);
 
+        if ($request->hasFile('image')) {
+
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+
+            $path = 'uploads/animals/';
+            $fileName = time() . '.' . $extension;
+            $file->move($path, $fileName);
+
+            $requestValidated['image_path'] = $path . $fileName;
+        }
         $animal = new Animal($requestValidated);
 
         $animal->save();
