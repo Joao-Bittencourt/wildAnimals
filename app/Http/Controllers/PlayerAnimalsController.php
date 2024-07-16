@@ -77,7 +77,7 @@ class PlayerAnimalsController extends Controller
         $playerAnimal = new PlayerAnimal($animalPlayer);
         $playerAnimal->save();
 
-        $timeExplorationCache = 30;
+        $timeExplorationCache = $animal->animalFamily->time_exploration ?? 30;
         $timeExploration = date('Y-m-d H:i:s', strtotime("+{$timeExplorationCache} seconds"));
         Cache::put('player-in-exploring-'.$playerId, $timeExploration, $timeExplorationCache);
 

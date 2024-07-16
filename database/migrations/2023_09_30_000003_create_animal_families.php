@@ -14,6 +14,7 @@ return new class () extends Migration {
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
+            $table->integer('time_exploration')->default('30');
             $table->integer('status')->default('1');
             $table->timestamps();
         });

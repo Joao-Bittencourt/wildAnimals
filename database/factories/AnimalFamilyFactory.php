@@ -12,6 +12,7 @@ class AnimalFamilyFactory extends Factory
             'name' => $this->faker->name(),
             'description' => $this->faker->name(),
             'status' => 1,
+            'time_exploration' => $this->faker->numberBetween(1, 120),
             'created_at' => now(),
             'updated_at' => now(),
         ];
