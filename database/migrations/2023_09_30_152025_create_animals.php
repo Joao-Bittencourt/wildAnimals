@@ -19,6 +19,7 @@ return new class () extends Migration {
             $table->integer('max_attack');
             $table->integer('min_defense');
             $table->integer('max_defense');
+            $table->string('image_path')->nullable();
             $table->integer('status')->default('1');
             $table->timestamps();
         });

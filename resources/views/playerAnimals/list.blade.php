@@ -20,9 +20,11 @@
 
     <div class="row">
         <div class="col-sm-12">
+            <x-paginate-count :data=$playerAnimals />
             <table class="table table-sm table-hover table-centered table-nowrap mb-0">
                 <thead class="thead-light">
                     <tr>
+                        <th class="text-center"></th>
                         <th class="text-center">#</th>
                         <th class="text-center">{{ __('messages.name') }}</th>
                         <th class="text-center">{{ __('messages.hp') }}</th>
@@ -30,19 +32,30 @@
                         <th class="text-center">{{ __('messages.defense') }}</th>
                         <th class="text-center">{{ __('messages.animal') }}</th>
                         <th class="text-center">{{ __('messages.status') }}</th>
+                        <th class="text-center">{{ __('messages.actions') }}</th>
 
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($playerAnimals as $playeranimal)
                     <tr class="text-center">
-                        <td>{{ $playeranimal->id }}</td>
-                        <td>{{ $playeranimal->name }}</td>
-                        <td>{{ $playeranimal->hp }}</td>
-                        <td>{{ $playeranimal->attack }}</td>
-                        <td>{{ $playeranimal->defense }}</td>
-                        <td>{{ $playeranimal->animal->name }}</td>
-                        <td>{{ $playeranimal->status == 1 ? __('messages.active') : __('messages.inactive') }}</td>
+                       
+                            <td>
+                                <img src="{{ asset($playeranimal->animal->image_path) }}" class="rounded-circle" style="width: 100px;" alt="quixote">
+                            </td>
+                            <td>{{ $playeranimal->id }}</td>
+                            <td>{{ $playeranimal->name }}</td>
+                            <td>{{ $playeranimal->hp }}</td>
+                            <td>{{ $playeranimal->attack }}</td>
+                            <td>{{ $playeranimal->defense }}</td>
+                            <td>{{ $playeranimal->animal->name }}</td>
+                            <td>{{ $playeranimal->status == 1 ? __('messages.active') : __('messages.inactive') }}</td>
+                        
+                            <td>
+                                <a href="{{ route('playerAnimals.show', ['playerAnimal' => $playeranimal]) }}" class="btn btn-sm btn-primary" title="{{ __('messages.show') }}">
+                                <i class="bi bi-card-list"></i>
+                                </a>
+                            </td>
                     </tr>
                     @empty
                     <tr class="text-center">
@@ -51,8 +64,9 @@
                     @endforelse
                 </tbody>
             </table>
-
-
+            <div class="d-flex justify-content-center mt-2">
+                {{ $playerAnimals->links() }}
+            </div>
         </div>
     </div>
 

@@ -20,6 +20,7 @@ class Animal extends Model
         'max_attack',
         'min_defense',
         'max_defense',
+        'image_path',
         'status',
         'created_at',
         'updated_at',

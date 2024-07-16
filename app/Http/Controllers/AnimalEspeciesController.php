@@ -10,7 +10,7 @@ class AnimalEspeciesController extends Controller
     public function list()
     {
         return view('animalEspecies.list', [
-            'animalEspecies' => AnimalEspecie::all(),
+            'animalEspecies' => AnimalEspecie::paginate(Controller::DEFAULT_PAGE_SIZE),
         ]);
     }
 
@@ -43,17 +43,5 @@ class AnimalEspeciesController extends Controller
             ->route('animalEspecies.list')
             ->with(['alert-success' => __('messages.created_success')]);
     }
-
-    //    public function update(Request $request, string $id) {
-    //        //
-    //    }
-    //
-    //    public function show(string $id) {
-    //        //
-    //    }
-    //
-    //    public function destroy(string $id) {
-    //        //
-    //    }
 
 }

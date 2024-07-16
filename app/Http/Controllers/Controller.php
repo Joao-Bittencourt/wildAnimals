@@ -10,4 +10,6 @@ class Controller extends BaseController
 {
     use AuthorizesRequests;
     use ValidatesRequests;
+
+    public const DEFAULT_PAGE_SIZE = 10;
 }

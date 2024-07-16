@@ -8,17 +8,18 @@
 </div>
 <div class="table-responsive p-3">
     @if(!empty(Auth::user()->id))
-        <div class="row align-items-center justify-content-between mb-2">
-            <div class="col col-sm-6 text-left">
-                <a class="btn btn-success" href="{{ route('animals.create') }}">
-                    <i class="fa fa-plus"></i> Criar
-                </a>
-            </div>
+    <div class="row align-items-center justify-content-between mb-2">
+        <div class="col col-sm-6 text-left">
+            <a class="btn btn-success" href="{{ route('animals.create') }}">
+                <i class="fa fa-plus"></i> Criar
+            </a>
         </div>
+    </div>
     @endif
 
     <div class="row">
         <div class="col-sm-12">
+            <x-paginate-count :data=$animals />
             <table class="table table-sm table-hover table-centered table-nowrap mb-0">
                 <thead class="thead-light">
                     <tr>
@@ -31,7 +32,7 @@
                         <th class="text-center">{{ __('messages.especie') }}</th>
                         <th class="text-center">{{ __('messages.family') }}</th>
                         <th class="text-center">{{ __('messages.status') }}</th>
-  
+
                     </tr>
                 </thead>
                 <tbody>
@@ -54,7 +55,9 @@
                     @endforelse
                 </tbody>
             </table>
-
+            <div class="d-flex justify-content-center mt-2">
+                {{ $animals->links() }}
+            </div>
 
         </div>
     </div>
