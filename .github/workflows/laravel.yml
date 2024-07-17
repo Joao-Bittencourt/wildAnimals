@@ -24,8 +24,12 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
+          ini-values: apc.enable_cli = 1
+          coverage: pcov
 
+      - name: checkout
       - uses: actions/checkout@v3
+
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
@@ -49,4 +53,20 @@ jobs:
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
-        run: vendor/bin/phpunit
+        run: |
+          if [[ ${{ matrix.php-version }} == '8.1' ]]; then
+            export CODECOVERAGE=1
+            vendor/bin/phpunit --stderr --verbose --coverage-clover=coverage.xml
+          else
+            vendor/bin/phpunit -c phpunit.xml.dist --stderr
+          fi
+      
+      - name: Code Coverage Report
+        if: matrix.php-version == '8.1' 
+        uses: codecov/codecov-action@v1
+
+      - name: SonarCloud Scan
+        if: matrix.php-version == '8.1'
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
