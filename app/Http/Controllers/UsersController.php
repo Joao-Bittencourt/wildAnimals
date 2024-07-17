@@ -24,7 +24,6 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
-
         $request->validate([
             'name' => 'required|string|max:250',
             'nick_name' => 'required|string|max:250',
@@ -85,6 +84,5 @@ class UsersController extends Controller
 
         return redirect()->route('users.login')
             ->withSuccess('You have logged out successfully!');
-
     }
 }

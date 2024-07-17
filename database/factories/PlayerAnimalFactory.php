@@ -8,7 +8,6 @@ class PlayerAnimalFactory extends Factory
 {
     public function definition(): array
     {
-
         $animals = \App\Models\Animal::all()->pluck('id');
         $players = \App\Models\Player::all()->pluck('id');
 

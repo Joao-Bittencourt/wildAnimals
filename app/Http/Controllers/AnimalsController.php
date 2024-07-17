@@ -18,7 +18,6 @@ class AnimalsController extends Controller
 
     public function create()
     {
-
         $animalEspecies = AnimalEspecie::all();
         $animalFamilies = AnimalFamily::all();
 
@@ -52,7 +51,6 @@ class AnimalsController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
 

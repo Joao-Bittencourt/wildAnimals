@@ -41,7 +41,6 @@ Route::post('/authenticate', [\App\Http\Controllers\UsersController::class, 'aut
     ->name('users.authenticate');
 
 Route::middleware(['auth'])->group(function () {
-
     Route::get('/animals/create', [\App\Http\Controllers\AnimalsController::class, 'create'])
         ->name('animals.create');
     Route::post('/animals/store', [\App\Http\Controllers\AnimalsController::class, 'store'])

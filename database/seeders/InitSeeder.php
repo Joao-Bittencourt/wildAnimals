@@ -9,7 +9,6 @@ class InitSeeder extends Seeder
 {
     public function run(): void
     {
-
         DB::table('animal_especies')
             ->insert($this->animal_especies());
 
