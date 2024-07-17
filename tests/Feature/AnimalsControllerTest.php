@@ -22,7 +22,6 @@ class AnimalsControllerTest extends TestCase
 
     public function testCreateAnimalGetRequestSuccess(): void
     {
-
         $loggedUser = User::factory()->create();
 
         $response = $this
@@ -35,7 +34,6 @@ class AnimalsControllerTest extends TestCase
 
     public function testStoreAnimalPostRequestSuccess(): void
     {
-
         $loggedUser = User::factory()->create();
         $this->actingAs($loggedUser);
 

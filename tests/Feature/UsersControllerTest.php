@@ -13,7 +13,6 @@ class UsersControllerTest extends TestCase
 
     public function testRegisterGetRequestSuccess(): void
     {
-
         $response = $this->get(route('users.register'));
 
         $response->assertViewIs('users.register');
@@ -22,7 +21,6 @@ class UsersControllerTest extends TestCase
 
     public function testLoginGetRequestSuccess(): void
     {
-
         $response = $this->get(route('users.login'));
 
         $response->assertViewIs('users.login');
@@ -31,7 +29,6 @@ class UsersControllerTest extends TestCase
 
     public function testStorePostRequestSuccess(): void
     {
-
         $name = $this->faker->word;
         $email = $this->faker->email();
 
@@ -49,7 +46,6 @@ class UsersControllerTest extends TestCase
 
     public function testAuthenticatePostRequestSuccess(): void
     {
-
         $user = \App\Models\User::factory()
             ->has(\App\Models\Player::factory()->count(1))
             ->create();
@@ -65,7 +61,6 @@ class UsersControllerTest extends TestCase
 
     public function testAuthenticatePostRequestError(): void
     {
-
         $response = $this->post(route('users.authenticate'), [
             'email' => 'invalid@email.com',
             'password' => 'invalid_password',
@@ -78,7 +73,6 @@ class UsersControllerTest extends TestCase
 
     public function testLogoutGetRequestSuccess(): void
     {
-
         $response = $this->get(route('users.logout'));
 
         $response->assertRedirect(route('users.login'));

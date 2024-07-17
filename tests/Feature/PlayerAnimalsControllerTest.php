@@ -12,7 +12,6 @@ class PlayerAnimalsControllerTest extends TestCase
 
     public function testListPlayersAnimalsGetRequestSuccess(): void
     {
-
         $loggedUser = User::factory()->create();
 
         $response = $this
@@ -25,7 +24,6 @@ class PlayerAnimalsControllerTest extends TestCase
 
     public function testExplorerPlayersAnimalsGetRequestSuccess(): void
     {
-
         $loggedUser = User::factory()->create();
 
         $response = $this
@@ -38,7 +36,6 @@ class PlayerAnimalsControllerTest extends TestCase
 
     public function testExplorPlayersAnimalsPostRequestSuccess(): void
     {
-
         $loggedUser = User::factory()
             ->has(\App\Models\Player::factory()->count(1))
             ->create();
