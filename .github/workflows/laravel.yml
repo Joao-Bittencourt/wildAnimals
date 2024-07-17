@@ -54,7 +54,7 @@ jobs:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
         run: |
-          if [[ ${{ matrix.php-version }} == '8.1' ]]; then
+          if ${{ matrix.php-version }} == '8.1'; then
             export CODECOVERAGE=1
             vendor/bin/phpunit --stderr --verbose --coverage-clover=coverage.xml
           else
