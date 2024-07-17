@@ -28,7 +28,6 @@ class AnimalFamiliesController extends Controller
 
     public function store(Request $request)
     {
-
         $requestValidated = $request->validate([
             'name' => 'required|unique:animal_families|max:255',
             'description' => 'required',

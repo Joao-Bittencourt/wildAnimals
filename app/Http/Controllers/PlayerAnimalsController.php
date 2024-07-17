@@ -13,7 +13,6 @@ class PlayerAnimalsController extends Controller
 {
     public function list()
     {
-
         $playerLoggedId = Auth::user()->player->id ?? 0;
         $playerAnimals = PlayerAnimal::with('animal')
             ->where('player_id', $playerLoggedId)
@@ -29,11 +28,10 @@ class PlayerAnimalsController extends Controller
 
     public function explorer()
     {
-
         $animalFamilies = \App\Models\AnimalFamily::has('animals')->get();
 
         $playerLoggedId = Auth::user()->player->id ?? 0;
-        $timeExploration = Cache::get('player-in-exploring-'.$playerLoggedId);
+        $timeExploration = Cache::get('player-in-exploring-' . $playerLoggedId);
         $time = $timeExploration ? (new DateTime($timeExploration))->diff(new DateTime(now()))->s : null;
 
         return view('playerAnimals.explorer', [
@@ -44,12 +42,10 @@ class PlayerAnimalsController extends Controller
 
     public function explor(Request $request)
     {
-
         $playerId = Auth::user()->player->id;
 
-        if (Cache::has('player-in-exploring-'.$playerId)) {
-
-            $timeExploration = Cache::get('player-in-exploring-'.$playerId);
+        if (Cache::has('player-in-exploring-' . $playerId)) {
+            $timeExploration = Cache::get('player-in-exploring-' . $playerId);
             $time =  (new DateTime($timeExploration))->diff(new DateTime(now()))->s;
             return redirect(route('playerAnimals.explorer'))->with([
                 'messages' => [
@@ -79,11 +75,10 @@ class PlayerAnimalsController extends Controller
 
         $timeExplorationCache = $animal->animalFamily->time_exploration ?? 30;
         $timeExploration = date('Y-m-d H:i:s', strtotime("+{$timeExplorationCache} seconds"));
-        Cache::put('player-in-exploring-'.$playerId, $timeExploration, $timeExplorationCache);
+        Cache::put('player-in-exploring-' . $playerId, $timeExploration, $timeExplorationCache);
 
         return redirect(route('playerAnimals.explorer'))->with([
             'timeExploration' => $timeExploration,
         ]);
     }
-
 }

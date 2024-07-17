@@ -28,7 +28,6 @@ class CustomValidationServiceProvider extends ServiceProvider
     // @ToDo: refatorar
     private function validateRangeAnimalsStats($attribute, $value, $parameters, $validator)
     {
-
         $operador = $parameters[0];
         $valorReferencia = $parameters[1];
 

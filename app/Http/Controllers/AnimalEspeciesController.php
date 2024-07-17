@@ -28,7 +28,6 @@ class AnimalEspeciesController extends Controller
 
     public function store(Request $request)
     {
-
         $requestValidated = $request->validate([
             'name' => 'required|unique:animal_families|max:255',
             'description' => 'required',
@@ -43,5 +42,4 @@ class AnimalEspeciesController extends Controller
             ->route('animalEspecies.list')
             ->with(['alert-success' => __('messages.created_success')]);
     }
-
 }
