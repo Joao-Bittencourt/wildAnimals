@@ -42,6 +42,9 @@
                             </li>
                         </ul>
                     </li>
+                    <li> 
+                        <a class="dropdown-item" href="{{route('users.list')}}"> Usuarios </i></a>
+                    </li>
                 </ul>
             </li>
         </ul>

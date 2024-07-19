@@ -70,6 +70,9 @@ Route::middleware(['auth'])->group(function () {
         ->name('playerAnimals.explorer');
     Route::post('/player-animals/explor', [\App\Http\Controllers\PlayerAnimalsController::class, 'explor'])
         ->name('playerAnimals.explor');
+
+    Route::get('/users', [\App\Http\Controllers\UsersController::class, 'index'])
+        ->name('users.list');
 });
 
 Route::get('/run-migrations', function () {
