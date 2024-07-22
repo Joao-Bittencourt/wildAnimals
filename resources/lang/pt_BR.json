@@ -2,5 +2,11 @@
     "Showing from " : "Exibindo ",
     " to " : " a ",
     " of " : " de ",
-    " from " : " de "
+    " from " : " de ",
+
+    "Previous" : "Anterior",
+    "Next" : "Próximo",
+    "No records found" : "Nenhum registro encontrado",
+
+    "Top 10 animals" : "Top 10 animais"
 }

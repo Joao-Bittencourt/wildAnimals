@@ -13,7 +13,14 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except([
-            'logout', 'dashboard',
+            'logout', 'dashboard', 'index'
+        ]);
+    }
+
+    public function index()
+    {
+        return view('users.list', [
+            'users' => User::paginate(Controller::DEFAULT_PAGE_SIZE),
         ]);
     }
 

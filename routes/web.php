@@ -1,8 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,15 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function (Request $request) {
-    Log::info('RequestLog', [
-        'ip' => $request->ip(),
-        'method' => $request->method(),
-        'url' => $request->fullUrl(),
-    ]);
-
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'welcome'])
+    ->name('welcome');
 
 Route::get('/animals', [\App\Http\Controllers\AnimalsController::class, 'list'])
     ->name('animals.list');
@@ -70,10 +61,21 @@ Route::middleware(['auth'])->group(function () {
         ->name('playerAnimals.explorer');
     Route::post('/player-animals/explor', [\App\Http\Controllers\PlayerAnimalsController::class, 'explor'])
         ->name('playerAnimals.explor');
+
+    Route::get('/users', [\App\Http\Controllers\UsersController::class, 'index'])
+        ->name('users.list');
 });
 
 Route::get('/run-migrations', function () {
     Artisan::call('migrate');
+
+    return 'sucesso!';
+});
+
+Route::get('/optimize', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('optimize:clear');
+    Artisan::call('optimize');
 
     return 'sucesso!';
 });
