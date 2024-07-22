@@ -19,9 +19,13 @@ class LoggerRequestMiddleware
     {
         $response = $next($request);
 
-        
         Log::channel('requestlog')->info('requestlog', [
-            'request' => $request->getContent(),
+            'request' => [
+                'url' => $request->url(),
+                'method' => $request->method(),
+                'ip' => $request->ip(),
+                'user' => $request->user()->id ?? null,
+            ],
             'response' => $response->getStatusCode(),
             'created_at' => Carbon::now(),
         ]);
