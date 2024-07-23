@@ -1,0 +1,26 @@
+config:
+  target: "http://localhost:8000"
+  phases:
+    - name: "Load Test"
+      arrivalRate: 8
+      duration: 30
+scenarios:
+  - name: "Pagina inicial"
+    flow:
+    - get:
+        url: "/"
+  
+  - name: "Pagina login"
+    flow:
+    - get:
+        url: "/login"
+
+  - name: "Pagina registro"
+    flow:
+    - get:
+        url: "/users/register"
+
+  - name: "Pagina lista de animais"
+    flow:
+    - get:
+        url: "/animals"
