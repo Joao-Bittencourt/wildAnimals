@@ -8,8 +8,8 @@ class PlayerAnimalFactory extends Factory
 {
     public function definition(): array
     {
-        $animals = \App\Models\Animal::all()->pluck('id');
-        $players = \App\Models\Player::all()->pluck('id');
+        $animals = \App\Models\Animal::inRandomOrder()->pluck('id');
+        $players = \App\Models\Player::inRandomOrder()->pluck('id');
 
         $animalId = $this->faker->randomElement($animals->toArray());
         $animal = \App\Models\Animal::get($animalId)->first();

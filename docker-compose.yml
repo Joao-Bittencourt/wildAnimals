@@ -12,8 +12,13 @@ services:
             - ./:/var/www
         # depends_on:
         #     - redis
-        networks:
-            - laravel
+        # networks:
+        #     - laravel
+        deploy:
+            resources:
+                limits:
+                    cpus: "1.0"
+                    memory: "512MB"
 
     # nginx
     nginx:
@@ -24,12 +29,17 @@ services:
         volumes:
             - ./:/var/www
             - ./docker/nginx/:/etc/nginx/conf.d/
-        networks:
-            - laravel
+        # networks:
+        #     - laravel
+        deploy:
+            resources:
+                limits:
+                    cpus: "0.5"
+                    memory: "50MB"
 
     # db mysql
     db:
-        image: mysql:5.7.22
+        image: mysql:8.0.36
         restart: unless-stopped
         environment:
             MYSQL_DATABASE: ${DB_DATABASE:-laravel}
@@ -40,8 +50,13 @@ services:
             - ./.docker/mysql/dbdata:/var/lib/mysql
         ports:
             - "3388:3306"
-        networks:
-            - laravel
+        # networks:
+        #     - laravel
+        deploy:
+            resources:
+                limits:
+                    cpus: "1.5"
+                    memory: "1024MB"
 
     # redis
     # redis:
@@ -49,6 +64,6 @@ services:
     #     networks:
     #         - laravel
 
-networks:
-    laravel:
-        driver: bridge
+# networks:
+#     laravel:
+#         driver: bridge

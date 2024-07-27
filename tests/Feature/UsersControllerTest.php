@@ -23,6 +23,16 @@ class UsersControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function testProfileGetRequestSuccess(): void
+    {
+        $response = $this
+            ->actingAs(User::factory()->create())
+            ->get(route('users.profile'));
+
+        $response->assertViewIs('users.profile');
+        $response->assertStatus(200);
+    }
+
     public function testRegisterGetRequestSuccess(): void
     {
         $response = $this->get(route('users.register'));

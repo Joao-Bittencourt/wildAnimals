@@ -49,7 +49,7 @@
             </li>
         </ul>
         <ul class='navbar-nav ml-auto'>
-            <a href="{{route('users.logout')}}" class='nav-link mr-1' title='detalhar'>
+            <a href="{{route('users.profile', ['user' => Auth::user()])}}" class='nav-link mr-1' title='detalhar'>
                 {{ Auth::user()->name}}
             </a>
 
