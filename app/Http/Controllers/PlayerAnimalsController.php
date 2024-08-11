@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\PlayerAnimal;
+use App\Services\LevelService;
+use App\Services\PlayerLevelService;
 use DateTime;
 use Faker;
 use Illuminate\Http\Request;
@@ -72,6 +74,9 @@ class PlayerAnimalsController extends Controller
 
         $playerAnimal = new PlayerAnimal($animalPlayer);
         $playerAnimal->save();
+
+        $plaerService = new PlayerLevelService(new LevelService());
+        $plaerService->addXp(Auth::user()->player, 15);
 
         $timeExplorationCache = $animal->animalFamily->time_exploration ?? 30;
         $timeExploration = date('Y-m-d H:i:s', strtotime("+{$timeExplorationCache} seconds"));
