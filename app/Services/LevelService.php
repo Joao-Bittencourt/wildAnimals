@@ -44,7 +44,6 @@ class LevelService
     {
         $level = 1;
         while (true) {
-
             $maxXpPerLevel = $this->getXpPerLevel($level);
             if ($xp < $maxXpPerLevel) {
                 return $level - 1;

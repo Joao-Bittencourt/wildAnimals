@@ -29,18 +29,19 @@ class PlayerLevelServiceTest extends TestCase
         $player = Player::factory()->create(['user_id' => $user->id]);
 
         $player->xp = 0;
-        $player->current_level = 0;
+        $player->current_level = 1;
 
         $this->playerLevelService->addXp($player, 100);
-        $this->assertEquals(100, $player->xp);
+        $this->assertEquals(0, $player->xp);
         $this->assertEquals(2, $player->current_level);
 
         $this->playerLevelService->addXp($player, 10);
-        $this->assertEquals(110, $player->xp);
+        $this->assertEquals(10, $player->xp);
         $this->assertEquals(2, $player->current_level);
 
-        $this->playerLevelService->addXp($player, 44);
-        $this->assertEquals(154, $player->xp);
+        $this->playerLevelService->addXp($player, 154);
+        $this->assertEquals(0, $player->xp);
         $this->assertEquals(3, $player->current_level);
+
     }
 }

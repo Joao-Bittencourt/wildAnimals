@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -14,10 +13,8 @@ class AnimalEspeciesControllerTest extends TestCase
 
     public function testListAnimalEspeciesGetRequestSuccess(): void
     {
-        $loggedUser = User::factory()->create();
-
         $response = $this
-            ->actingAs($loggedUser)
+            ->actingAs($this->userAdmin)
             ->get(route('animalEspecies.list'));
 
         $response->assertViewIs('animalEspecies.list');
@@ -26,10 +23,8 @@ class AnimalEspeciesControllerTest extends TestCase
 
     public function testCreateAnimalEspeciesGetRequestSuccess(): void
     {
-        $loggedUser = User::factory()->create();
-
         $response = $this
-            ->actingAs($loggedUser)
+            ->actingAs($this->userAdmin)
             ->get(route('animalEspecies.create'));
 
         $response->assertViewIs('animalEspecies.create');
@@ -38,18 +33,18 @@ class AnimalEspeciesControllerTest extends TestCase
 
     public function testStoreAnimalEspeciesPostRequestSuccess(): void
     {
-        $loggedUser = User::factory()->create();
-        $this->actingAs($loggedUser);
 
         $name = $this->faker->word;
         $description = $this->faker->word;
         $status = (int) $this->faker->boolean();
 
-        $response = $this->post(route('animalEspecies.store'), [
-            'name' => $name,
-            'description' => $description,
-            'status' => $status,
-        ]);
+        $response = $this
+            ->actingAs($this->userAdmin)
+            ->post(route('animalEspecies.store'), [
+                'name' => $name,
+                'description' => $description,
+                'status' => $status,
+            ]);
 
         $response->assertRedirect(route('animalEspecies.list'));
         $response->assertStatus(302);

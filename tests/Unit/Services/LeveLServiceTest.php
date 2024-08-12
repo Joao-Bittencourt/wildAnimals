@@ -20,7 +20,7 @@ class LeveLServiceTest extends TestCase
     */
     public function test_get_xp_per_level(int $level, int $xp): void
     {
-        $this->assertEquals($xp, $this->levelService->calculateXp($level));
+        $this->assertEquals($xp, $this->levelService->getXpPerLevel($level));
     }
 
     /**
@@ -91,5 +91,4 @@ class LeveLServiceTest extends TestCase
             [50, 89548],
         ];
     }
-
 }
