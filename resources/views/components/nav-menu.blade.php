@@ -52,9 +52,10 @@
             <a href="{{route('users.profile', ['user' => Auth::user()])}}" class='nav-link mr-1' title='detalhar'>
                 {{ Auth::user()->name}} <br>
                 <div>
-                    lvl {{ Auth::user()->player?->current_level }}
-                    ({{Auth::user()->player?->xp}} / {{ (new App\Services\LevelService())->getXpPerLevel(Auth::user()->player?->current_level)}})
-
+                    @if(Auth::user()?->player)
+                        lvl {{ Auth::user()->player->current_level }}
+                        ({{Auth::user()->player->xp}} / {{ (new App\Services\LevelService())->getXpPerLevel(Auth::user()->player->current_level)}})
+                    @endif
                 </div>
             </a>
             <li class='nav-item'>
