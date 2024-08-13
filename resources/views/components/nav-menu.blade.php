@@ -49,31 +49,38 @@
             </li>
         </ul>
         <ul class='navbar-nav ml-auto'>
-            <a href="{{route('users.logout')}}" class='nav-link mr-1' title='detalhar'>
-                {{ Auth::user()->name}}
+            <a href="{{route('users.profile', ['user' => Auth::user()])}}" class='nav-link mr-1' title='detalhar'>
+                {{ Auth::user()->name}} <br>
+                <div>
+                    @if(Auth::user()?->player)
+                        lvl {{ Auth::user()->player->current_level }}
+                        ({{Auth::user()->player->xp}} / {{ (new App\Services\LevelService())->getXpPerLevel(Auth::user()->player->current_level)}})
+                    @endif
+                </div>
             </a>
-
             <li class='nav-item'>
                 <a href="{{route('users.logout')}}" class='btn btn-sm btn-danger' title='sair'>
                     <i class='bi bi-box-arrow-left'></i>
                 </a>
             </li>
+        </ul>
+        @else
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link btn btn-success ml-1" href="{{ route('animals.list') }}">Animais</a>
+            </li>
+        </ul>
+        <ul class='navbar-nav ml-auto'>
+
+            <li class='nav-item'>
+                <a href="{{route('users.login')}}" class='btn btn-sm btn-success' title='Login'>
+                    <i class='bi bi-box-arrow-right'></i>
+                </a>
+            </li>
             <ul />
-            @else
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link btn btn-success ml-1" href="{{ route('animals.list') }}">Animais</a>
-                </li>
-            </ul>
-            <ul class='navbar-nav ml-auto'>
-
-                <li class='nav-item'>
-                    <a href="{{route('users.login')}}" class='btn btn-sm btn-success' title='Login'>
-                        <i class='bi bi-box-arrow-right'></i>
-                    </a>
-                </li>
-                <ul />
-                @endif
+            @endif
     </div>
-
+    <script>
+        document.getElementById("progress-bar-xp").style.width = progress + "%"
+    </script>
 </nav>
