@@ -42,6 +42,5 @@ class PlayerLevelServiceTest extends TestCase
         $this->playerLevelService->addXp($player, 154);
         $this->assertEquals(0, $player->xp);
         $this->assertEquals(3, $player->current_level);
-
     }
 }

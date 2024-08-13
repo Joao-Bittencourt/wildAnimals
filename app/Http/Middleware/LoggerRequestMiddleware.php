@@ -2,10 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use Carbon\Carbon;
+use App\Models\ActivityLog;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
 class LoggerRequestMiddleware
@@ -19,15 +18,21 @@ class LoggerRequestMiddleware
     {
         $response = $next($request);
 
-        Log::channel('requestlog')->info('requestlog', [
-            'request' => [
+        if ($request->path() == 'up') {
+            return $response;
+        }
+
+        ActivityLog::create([
+            'activity' => $request->path(),
+            'properties' => json_encode([
                 'url' => $request->url(),
+                'path' => $request->path(),
                 'method' => $request->method(),
                 'ip' => $request->ip(),
-                'user' => $request->user()->id ?? null,
-            ],
-            'response' => $response->getStatusCode(),
-            'created_at' => Carbon::now(),
+                'user_id' => $request->user()->id ?? null,
+                'response' => $response->getStatusCode(),
+            ]),
+            'user_id' => $request->user()->id ?? null,
         ]);
 
         return $response;

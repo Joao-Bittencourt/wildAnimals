@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/up', function () {
+    return response('up', 200);
+});
 
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'welcome'])
     ->name('welcome');

@@ -33,7 +33,6 @@ class AnimalEspeciesControllerTest extends TestCase
 
     public function testStoreAnimalEspeciesPostRequestSuccess(): void
     {
-
         $name = $this->faker->word;
         $description = $this->faker->word;
         $status = (int) $this->faker->boolean();

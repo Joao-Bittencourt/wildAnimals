@@ -53,7 +53,7 @@
                 {{ Auth::user()->name}} <br>
                 <div>
                     lvl {{ Auth::user()->player?->current_level }}
-                    ({{Auth::user()->player?->xp}})
+                    ({{Auth::user()->player?->xp}} / {{ (new App\Services\LevelService())->getXpPerLevel(Auth::user()->player?->current_level)}})
 
                 </div>
             </a>
