@@ -64,6 +64,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/users', [\App\Http\Controllers\UsersController::class, 'index'])
         ->name('users.list');
+
+    Route::get('/users/profile/{user}', [\App\Http\Controllers\UsersController::class, 'profile'])
+        ->name('users.profile');
 });
 
 Route::get('/run-migrations', function () {
