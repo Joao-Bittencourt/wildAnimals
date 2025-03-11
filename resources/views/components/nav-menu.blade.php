@@ -80,7 +80,4 @@
             <ul />
             @endif
     </div>
-    <script>
-        document.getElementById("progress-bar-xp").style.width = progress + "%"
-    </script>
 </nav>

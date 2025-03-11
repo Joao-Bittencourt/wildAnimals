@@ -1,5 +1,9 @@
 @props([
-    'data' => null
+'data' => null
 ])
 
-{{ __("Showing from ") .  $data?->firstItem() . __(' to ') . $data?->lastItem() . __(' of ') . $data?->total() }}
+<div id="paginate-count">
+
+    {{ __("Showing from ") .  $data?->firstItem() . __(' to ') . $data?->lastItem() . __(' of ') . $data?->total() }}
+
+</div>

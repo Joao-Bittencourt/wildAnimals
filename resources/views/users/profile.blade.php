@@ -9,7 +9,7 @@ $user = Auth::user();
     <div class="col-md-12">
 
         <div class="card">
-            <div class="card-header">Register</div>
+            <div class="card-header">{{ __('messages.profile') }}</div>
             <div class="card-body">
                 <div class="mb-3 row">
                     <label for="name" class="col-md-4 col-form-label text-md-end text-start">{{ __('messages.name') }}</label>

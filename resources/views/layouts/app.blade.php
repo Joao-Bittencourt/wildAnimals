@@ -92,6 +92,60 @@
                 }
             });
         })
+
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll(".paginacao").forEach(pagination => {
+                pagination.addEventListener("click", function(e) {
+                    if (e.target.tagName === "A") {
+                        e.preventDefault();
+                        let pagina = new URL(e.target.href).searchParams.get("page");
+                        let lista = e.target.closest(".lista-container");
+                        carregarTabela(pagina, lista);
+                    }
+                });
+            });
+
+
+            document.querySelectorAll(".lista-container").forEach(lista => {
+                carregarTabela(0, lista);
+            });
+        });
+
+        function carregarTabela(pagina, lista) {
+            let tabelaBody = lista.querySelector("#table-body");
+            let paginacao = lista.querySelector(".paginacao");
+            let pageInput = lista.querySelector(".page");
+
+            if (tabelaBody) {
+                tabelaBody.innerHTML = '<tr><td colspan="9" class="text-center"><div class="spinner-border m-5" role="status"><span class="sr-only"></span></div></td></tr>';
+            }
+            if (pageInput) {
+                pageInput.value = pagina;
+            }
+
+            fetch("?page=" + pagina, {
+                    method: "GET",
+                })
+                .then(response => response.text())
+                .then(data => {
+                    let parser = new DOMParser();
+                    let doc = parser.parseFromString(data, "text/html");
+                    let newTableBody = doc.querySelector("#table-body");
+                    let newPagination = doc.querySelector(".paginacao");
+                    let paginationCount = doc.querySelector("#paginate-count");
+                    console.log(doc);
+                    if (newTableBody && tabelaBody) {
+                        tabelaBody.innerHTML = newTableBody.innerHTML;
+                    }
+                    if (newPagination && paginacao) {
+                        paginacao.innerHTML = newPagination.innerHTML;
+
+                        document.getElementById("paginate-count").innerHTML = paginationCount.innerHTML;
+                    }
+
+                })
+                .catch(error => console.error("Erro ao carregar a tabela:", error));
+        }
     </script>
 </body>
 

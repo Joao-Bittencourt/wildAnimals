@@ -3,7 +3,7 @@
 @section('content')
 <div class="d-flex justify-content-between w-100 flex-wrap">
     <div class="mb-3 mb-lg-0">
-        <h2>{{ __('messages.animals') }}</h2>
+        <h2>{{ __('messages.users') }}</h2>
     </div>
 </div>
 <div class="table-responsive p-3">
@@ -37,6 +37,7 @@
                                     <i class="bi bi-ban"></i>
                                     Ban
                                 </a>
+                                <a href="{{ route('activityLogs.list', ['user' => $user]) }}" class="btn btn-sm btn-primary" title="{{ __('messages.show') }}">
                             </td>
                     </tr>
                     @empty

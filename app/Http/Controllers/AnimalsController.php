@@ -11,8 +11,10 @@ class AnimalsController extends Controller
 {
     public function list()
     {
+        $animals = Animal::paginate(Controller::DEFAULT_PAGE_SIZE);
+
         return view('animals.list', [
-            'animals' => Animal::paginate(Controller::DEFAULT_PAGE_SIZE),
+            'animals' => $animals,
         ]);
     }
 
