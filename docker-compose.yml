@@ -40,6 +40,7 @@ services:
     # db mysql
     db:
         image: mysql:8.0.36
+        image: mysql:8.0.36
         restart: unless-stopped
         environment:
             MYSQL_DATABASE: ${DB_DATABASE:-laravel}
@@ -47,7 +48,7 @@ services:
             MYSQL_PASSWORD: ${DB_PASSWORD:-userpass}
             MYSQL_USER: ${DB_USERNAME:-username}
         volumes:
-            - ./.docker/mysql/dbdata:/var/lib/mysql
+            - ./docker/mysql/dbdata:/var/lib/mysql
         ports:
             - "3388:3306"
         # networks:

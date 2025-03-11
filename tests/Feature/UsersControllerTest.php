@@ -2,8 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\Player;
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -16,10 +14,20 @@ class UsersControllerTest extends TestCase
     public function testListGetRequestSuccess(): void
     {
         $response = $this
-            ->actingAs(User::factory()->create())
+            ->actingAs($this->userAdmin)
             ->get(route('users.list'));
 
         $response->assertViewIs('users.list');
+        $response->assertStatus(200);
+    }
+
+    public function testProfileGetRequestSuccess(): void
+    {
+        $response = $this
+            ->actingAs($this->userAdmin)
+            ->get(route('users.profile', ['user' => $this->userAdmin]));
+
+        $response->assertViewIs('users.profile');
         $response->assertStatus(200);
     }
 
@@ -58,12 +66,8 @@ class UsersControllerTest extends TestCase
 
     public function testAuthenticatePostRequestSuccess(): void
     {
-        $user = User::factory()
-            ->has(Player::factory()->count(1))
-            ->create();
-
         $response = $this->post(route('users.authenticate'), [
-            'email' => $user->email,
+            'email' => $this->userAdmin->email,
             'password' => 'password',
         ]);
 

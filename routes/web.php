@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/up', function () {
+    return response('up', 200);
+});
 
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'welcome'])
     ->name('welcome');
@@ -64,9 +67,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/users', [\App\Http\Controllers\UsersController::class, 'index'])
         ->name('users.list');
-
     Route::get('/users/profile/{user}', [\App\Http\Controllers\UsersController::class, 'profile'])
         ->name('users.profile');
+
+    Route::get('/activity-logs', [\App\Http\Controllers\ActivityLogsController::class, 'index'])
+        ->name('activityLogs.list');
+    Route::get('/activity-logs/{activityLogId}', [\App\Http\Controllers\ActivityLogsController::class, 'show'])
+        ->name('activityLogs.show');
 });
 
 Route::get('/run-migrations', function () {
