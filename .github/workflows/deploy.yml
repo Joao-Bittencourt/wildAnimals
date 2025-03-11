@@ -16,27 +16,11 @@ jobs:
           php-version: '8.1'
     - name: Install Dependencies
       run: | 
-          composer update --prefer-lowest --prefer-stable
-          
-    - name: config database
-      run: |
-        echo '<?php 
-        $DATABASE_URL = "${{ vars.DATABASE_URL_FTP }}";
-        $DATABASE_URL = $DATABASE_URL ?? null;
-
-        $EMAIL_TRASPORT_HOST = "${{ vars.EMAIL_TRASPORT_HOST }}";
-        $EMAIL_TRASPORT_PORT = "${{ vars.EMAIL_TRASPORT_PORT }}";
-        $EMAIL_TRASPORT_USER = "${{ vars.EMAIL_TRASPORT_USER }}";
-        $EMAIL_TRASPORT_PASSWORD = "${{ vars.EMAIL_TRASPORT_PASSWORD }}";
-
-        define('DATABASE_URL', $DATABASE_URL);
-        define('EMAIL_TRASPORT_HOST', $EMAIL_TRASPORT_HOST ?? null);
-        define('EMAIL_TRASPORT_PORT', $EMAIL_TRASPORT_PORT ?? null);
-        define('EMAIL_TRASPORT_USER', $EMAIL_TRASPORT_USER ?? null);
-        define('EMAIL_TRASPORT_PASSWORD', $EMAIL_TRASPORT_PASSWORD ?? null);
-
-        ?>' > ./server_config.php
-      
+          composer update
+          composer install --optimize-autoloader --no-dev
+          npm install
+          npm run build
+                
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
@@ -44,8 +28,18 @@ jobs:
         username: ${{ vars.SITE_USER_FTP}}
         password: ${{ vars.SITE_PASS_FTP}}
         server-dir: ./public_html/
+        log-level: minimal
+        timeout: 90000
         exclude: |
           **/.git*
           **/.git*/**
           **/tests*
           **/tests/**
+          **/docker/**
+          **/docker*
+          **/Dockerfile
+          **/docker-compose*
+          **/.env.*
+          **/phpunit.xml
+          **/node_modules
+          **/node_modules/**

@@ -10,8 +10,10 @@ services:
         working_dir: /var/www/
         volumes:
             - ./:/var/www
-        depends_on:
-            - redis
+        # depends_on:
+        #     - redis
+        # networks:
+        #     - laravel
         deploy:
             resources:
                 limits:
@@ -27,6 +29,8 @@ services:
         volumes:
             - ./:/var/www
             - ./docker/nginx/:/etc/nginx/conf.d/
+        # networks:
+        #     - laravel
         deploy:
             resources:
                 limits:
@@ -35,6 +39,7 @@ services:
 
     # db mysql
     db:
+        image: mysql:8.0.36
         image: mysql:8.0.36
         restart: unless-stopped
         environment:
@@ -46,6 +51,8 @@ services:
             - ./docker/mysql/dbdata:/var/lib/mysql
         ports:
             - "3388:3306"
+        # networks:
+        #     - laravel
         deploy:
             resources:
                 limits:
@@ -53,8 +60,11 @@ services:
                     memory: "1024MB"
 
     # redis
-    redis:
-        image: redis:latest
-        ports:
-            - "6379:6379"
+    # redis:
+    #     image: redis:latest
+    #     networks:
+    #         - laravel
 
+# networks:
+#     laravel:
+#         driver: bridge
