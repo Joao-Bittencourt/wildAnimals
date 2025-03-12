@@ -16,6 +16,7 @@
             <li class="nav-item">
                 <a class="nav-link btn btn-success ml-1" href="#">Arena</a>
             </li>
+            @if(Auth::user()?->id === 1)
             <li class="nav-item dropdown">
                 <a class="nav-link btn btn-success ml-1 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Configurações
@@ -47,6 +48,7 @@
                     </li>
                 </ul>
             </li>
+            @endif
         </ul>
         <ul class='navbar-nav ml-auto'>
             <a href="{{route('users.profile', ['user' => Auth::user()])}}" class='nav-link mr-1' title='detalhar'>
@@ -77,7 +79,7 @@
                     <i class='bi bi-box-arrow-right'></i>
                 </a>
             </li>
-            <ul />
-            @endif
+        </ul>
+        @endif
     </div>
 </nav>
