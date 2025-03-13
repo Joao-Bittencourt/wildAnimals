@@ -37,7 +37,6 @@
                                     <i class="bi bi-ban"></i>
                                     Ban
                                 </a>
-                                <a href="{{ route('activityLogs.list', ['user' => $user]) }}" class="btn btn-sm btn-primary" title="{{ __('messages.show') }}">
                             </td>
                     </tr>
                     @empty
