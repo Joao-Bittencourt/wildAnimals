@@ -56,6 +56,9 @@
                                 <a href="{{ route('playerAnimals.show', ['playerAnimal' => $playeranimal]) }}" class="btn btn-sm btn-primary" title="{{ __('messages.show') }}">
                                     <i class="bi bi-card-list"></i>
                                 </a>
+                                <a href="{{ route('arenas.enter', ['player_animal_id' => $playeranimal->id]) }}" class="btn btn-sm btn-danger" title="{{ __('messages.enter_arena') }}">
+                                <i class="bi bi-fire"></i>
+                                </a>
                             </td>
                         </tr>
                         @empty

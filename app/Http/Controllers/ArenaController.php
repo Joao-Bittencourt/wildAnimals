@@ -2,24 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\ArenaAnimal;
 use App\Models\Animal;
 use App\Models\PlayerAnimal;
 
 class ArenaController extends Controller
 {
-    public function enterArena(Request $request)
+    public function index()
     {
-        $request->validate([
-            'player_animal_id' => ['required', 'exists:player_animals,id']
+        return view('arenas.index', [
+            'battles' => ArenaAnimal::with('playerAnimal')->paginate(Controller::DEFAULT_PAGE_SIZE)
         ]);
+    }
 
-        $playerAnimal = PlayerAnimal::find($request->player_animal_id);
+    public function enterArena(int $player_animal_id)
+    {
+
+        $playerAnimal = PlayerAnimal::findOrFail($player_animal_id);
 
         // Verifica se o animal já está na arena
         if (ArenaAnimal::where('player_animal_id', $playerAnimal->id)->exists()) {
-            return response()->json(['message' => 'Este animal já está na arena.'], 400);
+            return response()->redirectToRoute('arena.index')->with(['message' => 'Este animal já está na arena.'], 400);
         }
 
         // Adiciona o animal à arena
@@ -28,6 +31,6 @@ class ArenaController extends Controller
             'player_animal_id' => $playerAnimal->id
         ]);
 
-        return response()->json(['message' => 'Animal enviado para a arena!'], 201);
+        return response()->redirectToRoute('arena.index')->with(['message' => 'Animal enviado para a arena!'], 201);
     }
 }

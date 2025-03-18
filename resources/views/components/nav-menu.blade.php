@@ -14,7 +14,7 @@
                 <a class="nav-link btn btn-success ml-1" href="{{ route('playerAnimals.explorer') }}">Explorar</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link btn btn-success ml-1" href="#">Arena</a>
+                <a class="nav-link btn btn-success ml-1" href="{{ route('arenas.index') }}">Arena</a>
             </li>
             @if(Auth::user()?->id === 1)
             <li class="nav-item dropdown">

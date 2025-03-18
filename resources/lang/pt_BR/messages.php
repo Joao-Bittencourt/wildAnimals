@@ -68,4 +68,12 @@ return [
     'explorer' => 'Explorar',
     'playerAnimals_player_in_exploring' => 'Jogador já está em exploração.',
 
+    'arena' => 'Arena',
+    'winner' => 'Vencedor',
+    'attacker' => 'Atacante',
+    'defender' => 'Defensor',
+    'attack' => 'Ataque',
+    'defense' => 'Defesa',
+    'damage_received' => 'Dano Recebido',
+
 ];

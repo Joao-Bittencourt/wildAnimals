@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Battle extends Model
 {
@@ -33,5 +34,10 @@ class Battle extends Model
     public function winnerPlayerAnimal(): BelongsTo
     {
         return $this->belongsTo(PlayerAnimal::class, 'winner_player_animal_id');
+    }
+
+    public function battleTurns(): HasMany
+    {
+        return $this->hasMany(BattleTurn::class);
     }
 }

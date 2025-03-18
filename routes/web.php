@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get('/up', function () {
     return response('up', 200);
 });
@@ -65,11 +66,16 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/player-animals/explor', [\App\Http\Controllers\PlayerAnimalsController::class, 'explor'])
         ->name('playerAnimals.explor');
 
+    Route::get('/arenas', [\App\Http\Controllers\ArenaController::class, 'index'])->name('arenas.index');
+    Route::get('/arenas/enter/{player_animal_id}', [\App\Http\Controllers\ArenaController::class, 'enterArena'])->name('arenas.enter');
+
+    Route::get('/battles', [\App\Http\Controllers\BattleController::class, 'index'])->name('battles.index');
+    Route::get('/battles/{id}', [\App\Http\Controllers\BattleController::class, 'show'])->name('battles.show');
+
     Route::get('/users', [\App\Http\Controllers\UsersController::class, 'index'])
         ->name('users.list');
     Route::get('/users/profile/{user}', [\App\Http\Controllers\UsersController::class, 'profile'])
         ->name('users.profile');
-
 });
 
 Route::get('/run-migrations', function () {
