@@ -112,15 +112,22 @@
         });
 
         function carregarTabela(pagina, lista) {
+            
+            if (pagina == 0) {
+                return;
+            }
+            
             let tabelaBody = lista.querySelector("#table-body");
             let paginacao = lista.querySelector(".paginacao");
             let pageInput = lista.querySelector(".page");
 
-            if (tabelaBody) {
-                tabelaBody.innerHTML = '<tr><td colspan="9" class="text-center"><div class="spinner-border m-5" role="status"><span class="sr-only"></span></div></td></tr>';
-            }
             if (pageInput) {
                 pageInput.value = pagina;
+            }
+            
+
+            if (tabelaBody) {
+                tabelaBody.innerHTML = '<tr><td colspan="9" class="text-center"><div class="spinner-border m-5" role="status"><span class="sr-only"></span></div></td></tr>';
             }
 
             fetch("?page=" + pagina, {

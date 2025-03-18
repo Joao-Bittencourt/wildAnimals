@@ -4,6 +4,12 @@
 
 <div id="paginate-count">
 
-    {{ __("Showing from ") .  $data?->firstItem() . __(' to ') . $data?->lastItem() . __(' of ') . $data?->total() }}
+    {{ __("Showing from ") 
+        .  ($data ? $data?->firstItem() : '') 
+        . __(' to ') 
+        . ($data ? $data?->lastItem() : '') 
+        . __(' of ') 
+        . ($data ? $data?->total() : '')
+     }}
 
 </div>
