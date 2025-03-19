@@ -30,6 +30,7 @@ return [
     'created_success' => 'Dados salvos com sucesso!',
     'deleted_fail' => 'Falha ao deletar registro!',
     'no_records' => 'Nenhum registro encontrado',
+    'show' => 'Detalhar',
 
     'login_invalid_credentials' => 'Credenciais fornecidas não correspondem aos nossos registros.',
 
@@ -69,6 +70,7 @@ return [
     'playerAnimals_player_in_exploring' => 'Jogador já está em exploração.',
 
     'arena' => 'Arena',
+    'arenas' => 'Arenas',
     'winner' => 'Vencedor',
     'attacker' => 'Atacante',
     'defender' => 'Defensor',

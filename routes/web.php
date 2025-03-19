@@ -91,3 +91,17 @@ Route::get('/optimize', function () {
 
     return 'sucesso!';
 });
+
+Route::get('/clear-cache', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    Artisan::call('config:clear');
+
+    return 'sucesso!';
+});
+
+Route::get('/schedule', function () {
+    Artisan::call('schedule:run');
+
+    return 'sucesso!';
+});

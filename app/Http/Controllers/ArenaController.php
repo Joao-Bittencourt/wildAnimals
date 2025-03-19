@@ -17,12 +17,11 @@ class ArenaController extends Controller
 
     public function enterArena(int $player_animal_id)
     {
-
         $playerAnimal = PlayerAnimal::findOrFail($player_animal_id);
 
         // Verifica se o animal já está na arena
         if (ArenaAnimal::where('player_animal_id', $playerAnimal->id)->exists()) {
-            return response()->redirectToRoute('arena.index')->with(['message' => 'Este animal já está na arena.'], 400);
+            return back()->with(['alert-error' => 'Este animal já está na arena.'], 400);
         }
 
         // Adiciona o animal à arena
@@ -31,6 +30,6 @@ class ArenaController extends Controller
             'player_animal_id' => $playerAnimal->id
         ]);
 
-        return response()->redirectToRoute('arena.index')->with(['message' => 'Animal enviado para a arena!'], 201);
+        return response()->redirectToRoute('arenas.index')->with(['alert-success' => 'Animal enviado para a arena!'], 201);
     }
 }

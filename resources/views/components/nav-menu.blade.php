@@ -13,8 +13,14 @@
             <li class="nav-item">
                 <a class="nav-link btn btn-success ml-1" href="{{ route('playerAnimals.explorer') }}">Explorar</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link btn btn-success ml-1" href="{{ route('arenas.index') }}">Arena</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link btn btn-success ml-1 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Arena
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{ route('arenas.index') }}">Fila</a></li>
+                    <li><a class="dropdown-item" href="{{ route('battles.index') }}">Batalhas</a></li>
+                </ul>
             </li>
             @if(Auth::user()?->id === 1)
             <li class="nav-item dropdown">
@@ -55,8 +61,8 @@
                 {{ Auth::user()->name}} <br>
                 <div>
                     @if(Auth::user()?->player)
-                        lvl {{ Auth::user()->player->current_level }}
-                        ({{Auth::user()->player->xp}} / {{ (new App\Services\LevelService())->getXpPerLevel(Auth::user()->player->current_level)}})
+                    lvl {{ Auth::user()->player->current_level }}
+                    ({{Auth::user()->player->xp}} / {{ (new App\Services\LevelService())->getXpPerLevel(Auth::user()->player->current_level)}})
                     @endif
                 </div>
             </a>
