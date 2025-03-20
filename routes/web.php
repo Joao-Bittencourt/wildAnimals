@@ -100,8 +100,8 @@ Route::get('/clear-cache', function () {
     return 'sucesso!';
 });
 
-Route::get('/schedule', function () {
-    Artisan::call('schedule:run');
+Route::get('/queue', function () {
+    Artisan::call('queue:work --stop-when-empty', []);
 
     return 'sucesso!';
 });
