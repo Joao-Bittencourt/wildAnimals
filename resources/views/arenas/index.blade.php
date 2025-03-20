@@ -57,5 +57,15 @@
 
     </div>
 </div>
+<script>
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+
+            fetch('/jobs/battles').then(response => response.json()).then(data => {
+                console.log(data)
+            });
+        });
+    });
+</script>
 
 @stop

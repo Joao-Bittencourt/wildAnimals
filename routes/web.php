@@ -102,6 +102,10 @@ Route::get('/clear-cache', function () {
 
 Route::get('/queue', function () {
     Artisan::call('queue:work --stop-when-empty', []);
-
     return 'sucesso!';
+});
+
+Route::get('/jobs/battles', function () {
+    Artisan::call('battles:queue');
+    return response()->json(['success' => true]);
 });
