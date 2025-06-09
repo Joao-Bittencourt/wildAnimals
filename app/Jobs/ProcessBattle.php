@@ -53,7 +53,7 @@ class ProcessBattle implements ShouldQueue
 
             // Verifica se o defensor foi derrotado
             if ($defender->health <= 0) {
-                $battle->update(['winner_player_animal_id' => $attacker->player_id]);
+                $battle->update(['winner_player_animal_id' => $attacker->id]);
                 return;
             }
 
